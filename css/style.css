@@ -2,3 +2,9 @@ body {
   background-color:gray;
   cursor: url('../img/Icons/cursor.png'), auto;
 }
+
+canvas {
+  max-width: 1280px;
+  max-height: 720px;
+  background-color:white;
+}

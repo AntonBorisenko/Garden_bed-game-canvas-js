@@ -3,11 +3,11 @@ var View = {
 
   drawGame: "",
 
-  interval: 50,
+  interval: 100,
 
   //setInterval start
   start_game: function() {
-    View.drawGame = setInterval(View.draw_game, View.interval);
+    View.drawGame = setInterval(View.draw, View.interval);
   },
 
   //setInterval start
@@ -15,17 +15,37 @@ var View = {
     clearInterval(View.drawGame);
   },
 
-  //PAINTING
+  //define location
+  draw: function() {
+    if(location_now == "main menu") {
+        View.draw_main_menu();
+    } else {
+        View.draw_game();
+    }
+  },
+
+  //paint main menu
+  draw_main_menu: function () {
+    //Draw fone
+    ctx.fillStyle = "lightgreen";
+    ctx.fillRect(main_menu_fon_x,main_menu_fon_y,main_menu_fon_size_x,main_menu_fon_size_y);
+    for(var i = 0; i < 4;/*then change to the length of the array*/i++) {
+      ctx.drawImage(Main_menu.array_menu[i].img, Main_menu.array_menu[i].x, Main_menu.array_menu[i].y, Main_menu.array_menu[i].size_x, Main_menu.array_menu[i].size_y);
+    }
+  },
+
+  //PAINTING GAME
   draw_game: function() {
     //CLEAR CANVAS
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    //paint fone
-    ctx.drawImage(Download_app.images_plants[7], 10,10, 740, 580);
+    //paint garden
+    ctx.drawImage(Download_app.images_plants[7], garden_padding_left, garden_padding_top, garden_width, garden_height);
     //paint game menu
     View.paintGameMenu();
     //if there are plants
     if(Garden_bed.plants.length > 0)  View.paint_plants();
     //if bag == true
+
     if(bag)  View.paintBag();
     //if stock == true
     if(stock)  View.paintStock();
@@ -60,7 +80,7 @@ var View = {
         //paint plant
         ctx.drawImage(Download_app.images_plants[plants[i].img_number], plants[i].x, plants[i].y, plants[i].size, plants[i].size);
         //draw the icon for harvest
-        ctx.drawImage(Download_app.images_plants[5], (plants[i].x + plants[i].size), plants[i].y, 40, 40);
+        ctx.drawImage(Download_app.images_plants[5], (plants[i].x + plants[i].size), plants[i].y, hurvest_img_size, hurvest_img_size);
       }
       //IF PLANT DED
       if(plants[i].status == "ded") {
@@ -87,7 +107,7 @@ var View = {
     var stock_menu = Game_menu.array_for_stock;
     var count_plants = Game_menu.array_for_stock_count_plants;
     ctx.fillStyle = "black";
-    ctx.font= "14px Georgia";
+    ctx.font = stock_count_text;
     for(var i = 0; i < stock_menu.length; i++) {
       ctx.drawImage(stock_menu[i].img, stock_menu[i].x, stock_menu[i].y, stock_menu[i].size_x, stock_menu[i].size_y);
       ctx.fillText(count_plants[i].count,count_plants[i].x,count_plants[i].y);
@@ -95,7 +115,7 @@ var View = {
   },
 
   paint_places_for_plant: function() {
-    var size = 100;
+    var size = place_for_plant_size;
     ctx.fillStyle = "lightgreen";
     document.body.style.cursor = "url('img/Icons/grain.png'), auto";
     var places = Garden_bed.places_for_planting;

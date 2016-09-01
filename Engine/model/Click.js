@@ -48,7 +48,7 @@ var Click = {
   main_menu: function(x,y) {
     var menu = Main_menu.array_menu;
     for(var i = 0; i < menu.length; i++) {
-      if((x > menu[i].x1 && x < menu[i].x2) && (y > menu[i].y1 && y < menu[i].y2) ) {
+      if((x > menu[i].x && x < (menu[i].x + menu[i].size_x) ) && (y > menu[i].y && y < (menu[i].y + menu[i].size_y)) )  {
         Model.main_menu_click(menu[i].Obj_name);
       }
     }

@@ -24,7 +24,6 @@ var Model = {
 
       case "game menu complete":
         window.location_now = "game";
-        Controller.start_game();
       break;
 
       case "exit in menu":
@@ -34,10 +33,15 @@ var Model = {
 
   },
 
+  initialization: function(canvas) {
+    Global.initialization(canvas);
+    Garden_bed.init();
+  },
+
   //Downloading images
   download: function() {
-    ctx.font = "italic 36px Arial";
-    ctx.fillText("Подождите, идёт загрузка приложения", 100, 300);
+    ctx.font = download_app_text;
+    ctx.fillText("Подождите, идёт загрузка приложения", download_app_x, download_app_y);
     Download_app.downloading();
   },
 

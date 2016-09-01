@@ -3,7 +3,9 @@
 var Controller = {
 
   //Download an application
-  start: function() {
+  start: function(canvas) {
+    //initialization global variables, proportions
+    Model.initialization(canvas);
     Model.download();
   },
 
@@ -16,7 +18,7 @@ var Controller = {
       break;
 
       case "main menu complete":
-        //Sleep
+        View.start_game();
         break;
 
       case "exit in menu":
@@ -31,5 +33,5 @@ var Controller = {
   start_game: function() {
     View.start_game();
   }
-  
+
 }

@@ -1,13 +1,14 @@
 "use strict";
 //PROTOTYPE PLANTS
 function Plant(id, name, img_number, x_cor, y_cor, place, water, grown) {
+  var plant_size = window.plant_size;
   this.id = id;
   this.name = name;
   this.status = "grow";
   this.img_number = img_number;
   this.x = x_cor;
   this.y = y_cor;
-  this.size = 100;
+  this.size = plant_size;
   this.place = place;
   this.water = water;
   this.grown = grown;
@@ -33,7 +34,7 @@ Plant.prototype.growing = function() {
     //We ask the model to create a picture for the harvest
     var x = this.x + this.size;
     var y = this.y;
-    var size = 40;
+    var size = window.hurvest_img_size;
     Model.plant_has_groun(this.place,x,y,size);
   }
 

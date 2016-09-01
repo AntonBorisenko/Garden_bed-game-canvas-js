@@ -8,15 +8,12 @@ var Main_menu = {
   make: function() {
     //zero out an array
     Main_menu.array_menu = [];
-    //Draw fone
-    ctx.fillStyle = "lightgreen";
-    ctx.fillRect(0,0,900,600);
 
     function create_menu_item(img, x, y, Obj_name) {
-      var size_x = 290;
-      var size_y = 70;
-      ctx.drawImage(img, x, y, size_x, size_y);
-      var object_menu = new Main_menu.create_object(Obj_name, x, x+size_x, y, y+size_y);
+      var size_x = main_menu_item_size_x;
+      var size_y = main_menu_item_size_y;
+      //ctx.drawImage(img, x, y, size_x, size_y);
+      var object_menu = new Main_menu.create_object(Obj_name, x, y, size_x, size_y, img);
       //Add in array
       Main_menu.array_menu.push(object_menu);
       if(Main_menu.array_menu.length == 4) {
@@ -25,20 +22,21 @@ var Main_menu = {
       }
     }
     //Create main menu
-    create_menu_item(Download_app.images_main_menu[0], 310, 80, "on_garden_bed");
-    create_menu_item(Download_app.images_main_menu[1], 310, 200, "help");
-    create_menu_item(Download_app.images_main_menu[2], 310, 320, "new_game");
-    create_menu_item(Download_app.images_main_menu[3], 310, 440, "exit");
+    create_menu_item(Download_app.images_main_menu[0], main_menu_item_x, main_menu_on_garden_bed_y, "on_garden_bed");
+    create_menu_item(Download_app.images_main_menu[1], main_menu_item_x, main_menu_help_y, "help");
+    create_menu_item(Download_app.images_main_menu[2], main_menu_item_x, main_menu_new_game_bed_y, "new_game");
+    create_menu_item(Download_app.images_main_menu[3], main_menu_item_x, main_menu_exit_bed_y, "exit");
   },
 
   //Prototype main menu items
-  create_object: function(Obj_name,x1,x2,y1,y2) {
+  create_object: function(Obj_name,x,y,size_x,size_y,img) {
    this.Obj_name = Obj_name;
-   this.x1 = x1;
-   this.x2 = x2;
-   this.y1 = y1;
-   this.y2 = y2;
-  },
+   this.x = x;
+   this.y = y;
+   this.size_x = size_x;
+   this.size_y = size_y;
+   this.img = img;
+ },
 
   click_on_the_item: function(item) {
     switch(item) {

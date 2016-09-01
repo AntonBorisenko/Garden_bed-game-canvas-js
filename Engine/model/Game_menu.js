@@ -23,12 +23,12 @@ var Game_menu = {
         Model.responce("game menu complete");
       }
     }
-    create_menu_item(Download_app.images_game_menu[0], 770, 10, 120, 50, "Menu");//shovel
-    create_menu_item(Download_app.images_game_menu[1], 770, 80, 50, 50, "Bailer");//bailer
-    create_menu_item(Download_app.images_game_menu[2], 830, 80, 50, 50, "Sprayer");//sprayer
-    create_menu_item(Download_app.images_game_menu[3], 770, 140, 50, 50, "Shovel");//shovel
-    create_menu_item(Download_app.images_game_menu[4], 830, 140, 50, 50, "Bag");//bag
-    create_menu_item(Download_app.images_game_menu[5], 770, 200, 120, 50, "Stock");//stock
+    create_menu_item(Download_app.images_game_menu[0], game_menu_icon_menu_x, game_menu_icon_menu_y, game_menu_icon_menu_size_x, game_menu_icon_menu_size_y, "Menu");//menu
+    create_menu_item(Download_app.images_game_menu[1], game_menu_icon_bailer_x, game_menu_icon_bailer_y, game_menu_icon_bailer_size_x, game_menu_icon_bailer_size_y, "Bailer");//bailer
+    create_menu_item(Download_app.images_game_menu[2], game_menu_icon_sprayer_x, game_menu_icon_sprayer_y, game_menu_icon_sprayer_size_x, game_menu_icon_sprayer_size_y, "Sprayer");//sprayer
+    create_menu_item(Download_app.images_game_menu[3], game_menu_icon_shovel_x, game_menu_icon_shovel_y, game_menu_icon_shovel_size_x, game_menu_icon_shovel_size_y, "Shovel");//shovel
+    create_menu_item(Download_app.images_game_menu[4], game_menu_icon_bag_x, game_menu_icon_bag_y, game_menu_icon_bag_size_x, game_menu_icon_bag_size_y, "Bag");//bag
+    create_menu_item(Download_app.images_game_menu[5], game_menu_icon_stock_x, game_menu_icon_stock_y, game_menu_icon_stock_size_x, game_menu_icon_stock_size_y, "Stock");//stock
   },
 
   //create objects menu for bag
@@ -43,9 +43,9 @@ var Game_menu = {
         //bag menu completed
       }
     }
-    create_menu_item(Download_app.images_plants_icons[0], 760, 150, 40, 40, Potatoes);//potatoes
-    create_menu_item(Download_app.images_plants_icons[1], 805, 150, 40, 40, Tomato);//tomato
-    create_menu_item(Download_app.images_plants_icons[2], 850, 150, 40, 40, Cabbage);//cabbage
+    create_menu_item(Download_app.images_plants_icons[0], bag_potatoes_icon_x, bag_potatoes_icon_y, size_bag_icon, size_bag_icon, Potatoes);//potatoes
+    create_menu_item(Download_app.images_plants_icons[1], bag_tomato_icon_x, bag_tomato_icon_y, size_bag_icon, size_bag_icon, Tomato);//tomato
+    create_menu_item(Download_app.images_plants_icons[2], bag_cabbage_icon_x, bag_cabbage_icon_y, size_bag_icon, size_bag_icon, Cabbage);//cabbage
   },
 
   //create objects menu for stock
@@ -60,9 +60,9 @@ var Game_menu = {
         //bag menu completed
       }
     }
-    create_menu_item(Download_app.images_plants_icons[0], 620, 220, 40, 40, "potatoes", 0);//potatoes
-    create_menu_item(Download_app.images_plants_icons[1], 670, 220, 40, 40, "tomato", 1);//tomato
-    create_menu_item(Download_app.images_plants_icons[2], 720, 220, 40, 40, "cabbage", 2);//cabbage
+    create_menu_item(Download_app.images_plants_icons[0], stock_potatoes_icon_x, stock_potatoes_icon_y, size_stock_icon, size_stock_icon, "potatoes", 0);//potatoes
+    create_menu_item(Download_app.images_plants_icons[1], stock_tomato_icon_x, stock_potatoes_icon_y, size_stock_icon, size_stock_icon, "tomato", 1);//tomato
+    create_menu_item(Download_app.images_plants_icons[2], stock_cabbage_icon_x, stock_potatoes_icon_y, size_stock_icon, size_stock_icon, "cabbage", 2);//cabbage
 
     function create_stock_count_plants(id_plant, name, x, y, count) {
       function create_object_count_plants(id_plant, name, x, y, count) {
@@ -77,9 +77,9 @@ var Game_menu = {
       Game_menu.array_for_stock_count_plants.push(obj_count);
     }
     //array for storage, which contains a number of plants and coordinates output
-    create_stock_count_plants(0, "potatoes", 660, 220, 0);
-    create_stock_count_plants(1, "tomato", 710, 220, 0);
-    create_stock_count_plants(2, "cabbage", 760, 220, 0);
+    create_stock_count_plants(0, "potatoes", stock_count_potatoes_x, stock_count_potatoes_y, 0);
+    create_stock_count_plants(1, "tomato", stock_count_tomato_x, stock_count_tomato_y, 0);
+    create_stock_count_plants(2, "cabbage", stock_count_cabbage_x, stock_count_cabbage_y, 0);
   },
 
   //Protoype menu icons and menu items
@@ -150,18 +150,29 @@ var Shovel = {
 var Bag = {
 
   //coordinates
-  x:750,
-  y:140,
-  size_x:150,
-  size_y:240,
+  x:0,
+  y:0,
+  size_x:0,
+  size_y:0,
 
   click_on_the_icon: function() {
+    if(!Bag.x||!Bag.y||!Bag.size_x||Bag.size_y) {
+      Bag.init_proportions();
+    }
     window.bag = true;
     window.location_now = "bag";
     if(Game_menu.array_for_bag.length == 0) {
       Game_menu.create_bag();
     }
+  },
+
+  init_proportions: function() {
+      Bag.x = bag_x;
+      Bag.y = bag_y;
+      Bag.size_x = bag_size_x;
+      Bag.size_y = bag_size_y;
   }
+
 }
 
 //Create object Stock
@@ -169,21 +180,31 @@ var Stock = new Stock();
 //Constructor Stock
 function Stock() {
   //public properties
-  this.x = 600;
-  this.y = 200;
-  this.size_x = 300;
-  this.size_y = 200;
+  this.x = 0;
+  this.y = 0;
+  this.size_x = 0;
+  this.size_y = 0;
 
   //plants
   this.plants = Game_menu.array_for_stock_count_plants;
 
   //public methods
   this.click_on_the_icon = function() {
+    if(!this.x||!this.y||!this.size_x||this.size_y) {
+      this.init_proportions();
+    }
     window.stock = true;
      window.location_now = "stock";
      if(Game_menu.array_for_stock.length == 0) {
        Game_menu.create_stock();
     }
+  }
+
+  this.init_proportions = function() {
+      this.x = stock_x;
+      this.y = stock_y;
+      this.size_x = stock_size_x;
+      this.size_y = stock_size_y;
   }
 
   this.selection = function(id_plant) {
