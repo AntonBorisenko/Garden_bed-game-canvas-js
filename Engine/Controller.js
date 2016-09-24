@@ -4,12 +4,11 @@ var Controller = {
 
   //Download an application
   start: function(canvas) {
-    //initialization global variables, proportions
-    Model.initialization(canvas);
-    Model.download();
+    Model.initialization(canvas); //initialization global variables, proportions
+    Model.download(); //download all images for game
   },
 
-  //a function of receiving responce
+  //A function of receiving responce
   complete: function(message) {
     switch(message) {
 

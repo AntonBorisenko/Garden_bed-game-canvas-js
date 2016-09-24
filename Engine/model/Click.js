@@ -95,16 +95,18 @@ var Click = {
 
   //if the open stock for plant selection
   stock: function(x,y) {
-    if((x > Stock.x && x < (Stock.x + Stock.size_x)) && (y > Stock.y && y < (Stock.y + Stock.size_y)) ) {
-       var selection = Game_menu.array_for_stock;
-       for(var i = 0; i < selection.length; i++) {
-         if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
-           Model.stock(selection[i]);
-         }
-       }
-     } else {
-        Model.stock(false);
-     }
+    //exit in game
+    if((x > plate_exit_in_game_x && x < (plate_exit_in_game_x + plate_exit_in_game_size_x)) && (y > plate_exit_in_game_y && y < (plate_exit_in_game_y + plate_exit_in_game_size_y)) ) {
+       Model.stock(false);
+    }
+   //selection plants
+    var selection = Game_menu.array_for_stock;
+    for(var i = 0; i < selection.length; i++) {
+      if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
+        Model.stock(selection[i]);
+      }
+    }
+
   },
 
   //Planting plant in the place

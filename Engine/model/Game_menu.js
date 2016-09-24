@@ -175,44 +175,56 @@ var Bag = {
 
 }
 
-//Create object Stock
-var Stock = new Stock();
+
 //Constructor Stock
-function Stock() {
+var Stock = {
+  //status variables
+  sell: false,
   //public properties
-  this.x = 0;
-  this.y = 0;
-  this.size_x = 0;
-  this.size_y = 0;
+  x: 0,
+  y: 0,
+  size_x: 0,
+  size_y: 0,
 
   //plants
-  this.plants = Game_menu.array_for_stock_count_plants;
+  plants: null,
 
   //public methods
-  this.click_on_the_icon = function() {
+  click_on_the_icon: function() {
     if(!this.x||!this.y||!this.size_x||this.size_y) {
-      this.init_proportions();
+      Stock.init_proportions();
     }
     window.stock = true;
      window.location_now = "stock";
      if(Game_menu.array_for_stock.length == 0) {
        Game_menu.create_stock();
     }
-  }
+  },
 
-  this.init_proportions = function() {
-      this.x = stock_x;
-      this.y = stock_y;
-      this.size_x = stock_size_x;
-      this.size_y = stock_size_y;
-  }
+  init_proportions: function() {
+      Stock.x = stock_x;
+      Stock.y = stock_y;
+      Stock.size_x = stock_size_x;
+      Stock.size_y = stock_size_y;
+      Stock.plants = Game_menu.array_for_stock_count_plants;
+  },
 
-  this.selection = function(id_plant) {
+  selection: function(id_plant) {
+    //console.log(Stock.plants);
     alert(id_plant);
-  }
+    Stock.sell = true;
+  },
 
-  this.restocking = function(id_plant) {
-    this.plants[id_plant].count++;
+  restocking: function(id_plant) {
+    if(Stock.plants == null) {
+      Stock.plants = Game_menu.array_for_stock_count_plants;
+    }
+    Stock.plants[id_plant].count++;
+  },
+
+  sell_plants: function(id_plant) {
+    Stock.plants[id_plant].count--;
+    Stock.sell = false;
   }
 
 }

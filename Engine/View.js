@@ -19,12 +19,14 @@ var View = {
   draw: function() {
     if(location_now == "main menu") {
         View.draw_main_menu();
+    } else if(location_now == "stock") {
+        View.paintStock();
     } else {
         View.draw_game();
     }
   },
 
-  //paint main menu
+  //PAINT MAIN MENU
   draw_main_menu: function () {
     //Draw fone
     ctx.fillStyle = "lightgreen";
@@ -34,21 +36,40 @@ var View = {
     }
   },
 
+  //PAINT STOCK(pause)
+  paintStock: function() {
+    ctx.fillStyle = "lightgray";
+    ctx.fillRect(Stock.x, Stock.y, Stock.size_x, Stock.size_y);
+    //paint plants icons
+    var stock_menu = Game_menu.array_for_stock;
+    var count_plants = Game_menu.array_for_stock_count_plants;
+    ctx.fillStyle = "black";
+    ctx.font = stock_count_text;
+    //draw plate stock
+    ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
+    //draw plate exit in game
+    ctx.drawImage(Download_app.images_stock[1], plate_exit_in_game_x, plate_exit_in_game_y, plate_exit_in_game_size_x, plate_exit_in_game_size_y);
+    for(var i = 0; i < stock_menu.length; i++) {
+      ctx.drawImage(stock_menu[i].img, stock_menu[i].x, stock_menu[i].y, stock_menu[i].size_x, stock_menu[i].size_y);
+      ctx.fillText(count_plants[i].count,count_plants[i].x,count_plants[i].y);
+    }
+    if(Stock.sell == true) {
+      console.log("SELL!");
+    }
+  },
+
   //PAINTING GAME
   draw_game: function() {
     //CLEAR CANVAS
     ctx.clearRect(0,0,canvas.width,canvas.height);
     //paint garden
-    ctx.drawImage(Download_app.images_plants[7], garden_padding_left, garden_padding_top, garden_width, garden_height);
+    ctx.drawImage(Download_app.images_for_game[0], garden_padding_left, garden_padding_top, garden_width, garden_height);
     //paint game menu
     View.paintGameMenu();
     //if there are plants
     if(Garden_bed.plants.length > 0)  View.paint_plants();
     //if bag == true
-
     if(bag)  View.paintBag();
-    //if stock == true
-    if(stock)  View.paintStock();
     //if planting == true
     if(planting)  View.paint_places_for_plant();
   },
@@ -80,12 +101,12 @@ var View = {
         //paint plant
         ctx.drawImage(Download_app.images_plants[plants[i].img_number], plants[i].x, plants[i].y, plants[i].size, plants[i].size);
         //draw the icon for harvest
-        ctx.drawImage(Download_app.images_plants[5], (plants[i].x + plants[i].size), plants[i].y, hurvest_img_size, hurvest_img_size);
+        ctx.drawImage(Download_app.images_for_game[2], (plants[i].x + plants[i].size), plants[i].y, hurvest_img_size, hurvest_img_size);
       }
       //IF PLANT DED
       if(plants[i].status == "ded") {
         //paint ded plant
-        ctx.drawImage(Download_app.images_plants[4], plants[i].x, plants[i].y, plants[i].size, plants[i].size);
+        ctx.drawImage(Download_app.images_for_game[1], plants[i].x, plants[i].y, plants[i].size, plants[i].size);
       }
     }
   },
@@ -97,20 +118,6 @@ var View = {
     var bag_menu = Game_menu.array_for_bag;
     for(var i = 0; i < bag_menu.length; i++) {
       ctx.drawImage(bag_menu[i].img, bag_menu[i].x, bag_menu[i].y, bag_menu[i].size_x, bag_menu[i].size_y);
-    }
-  },
-
-  paintStock: function() {
-    ctx.fillStyle = "lightgray";
-    ctx.fillRect(Stock.x, Stock.y, Stock.size_x, Stock.size_y);
-    //paint plants icons
-    var stock_menu = Game_menu.array_for_stock;
-    var count_plants = Game_menu.array_for_stock_count_plants;
-    ctx.fillStyle = "black";
-    ctx.font = stock_count_text;
-    for(var i = 0; i < stock_menu.length; i++) {
-      ctx.drawImage(stock_menu[i].img, stock_menu[i].x, stock_menu[i].y, stock_menu[i].size_x, stock_menu[i].size_y);
-      ctx.fillText(count_plants[i].count,count_plants[i].x,count_plants[i].y);
     }
   },
 

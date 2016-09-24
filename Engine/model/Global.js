@@ -21,16 +21,12 @@ var Global = {
   },
 
   define_status_variables: function(canvas) {
-    //location
-    window.location_now;
-    //the state of the bag
-    window.bag = false;
-    //the state of the stock
-    window.stock = false;
-    //the state of the planting
-    window.planting = false;
-    //Choose plants for planting
-    window.plant_for_planting = false;
+    window.location_now;       //location
+    window.bag = false;       //the state of the bag
+    window.stock = false;     //the state of the stock
+    window.planting = false;  //the state of the planting
+    window.plant_for_planting = false;  //Choose plants for planting
+    window.stock_selection = false;
   },
 
   define_main_menu: function(canvas) {
@@ -51,8 +47,8 @@ var Global = {
 
   define_garden_bed: function(canvas) {
     //garden bed
-    window.garden_padding_left = canvas.height/50;
-    window.garden_padding_top = canvas.height/50;
+    window.garden_padding_left = window.garden_padding_right =
+    window.garden_padding_top = window.garden_padding_bottom = canvas.height/50;
     window.garden_height = canvas.height - (window.garden_padding_left + window.garden_padding_top);
     window.garden_width = window.garden_height * 1.5;
     //hurvest_img_size
@@ -128,10 +124,20 @@ var Global = {
 
   define_stock: function(canvas) {
     //define stock coordinates and bag size_x
-    window.stock_size_x = canvas.width - garden_width - garden_padding_left;
-    window.stock_size_y = canvas.height/1.85;
-    window.stock_x = garden_width + garden_padding_left;
-    window.stock_y = game_menu_icon_stock_y;
+    window.stock_size_x = canvas.width - (garden_padding_left + garden_padding_right);
+    window.stock_size_y = canvas.height - (garden_padding_top + garden_padding_bottom);
+    window.stock_x = garden_padding_left;
+    window.stock_y = garden_padding_top;
+    //icon exit in game
+    window.plate_exit_in_game_size_x = canvas.width/6;
+    window.plate_exit_in_game_size_y = plate_exit_in_game_size_x/2;
+    window.plate_exit_in_game_x = canvas.width - canvas.width/5;
+    window.plate_exit_in_game_y = garden_padding_top*2;
+    //icon stock
+    window.plate_stock_size_x = canvas.width/6;
+    window.plate_stock_size_y = plate_stock_size_x/2;
+    window.plate_stock_x = garden_padding_left*2;
+    window.plate_stock_y = garden_padding_top*2;
     //define proportion and location stock items
     var distance_icon = canvas.width/80;
     window.size_stock_icon = canvas.height/13;
@@ -145,7 +151,7 @@ var Global = {
     window.stock_cabbage_icon_x = stock_x + (size_stock_icon*2) + (distance_icon*3);
     //y
     var first_three_icon = window.stock_potatoes_icon_y = window.stock_tomato_icon_y =
-    window.stock_cabbage_icon_y = stock_y + (distance_icon*1.6);
+    window.stock_cabbage_icon_y = stock_y + (distance_icon*10);
     //stock count
     var stock_size_px = canvas.width/71.1;
     window.stock_count_text = stock_size_px + "px Georgia";

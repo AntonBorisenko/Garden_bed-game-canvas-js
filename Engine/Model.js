@@ -98,8 +98,8 @@ var Model = {
     //Define variables
     if(selection) {
       Stock.selection(selection.id_plant);
-      window.stock = false;
-      window.location_now = "game";
+      //window.stock = false;
+      //window.location_now = "game";
     } else {
       window.stock = false;
       window.location_now = "game";

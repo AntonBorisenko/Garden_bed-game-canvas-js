@@ -3,7 +3,7 @@
 window.onload = function() {
   //Init canvas
   window.canvas = document.getElementById("canvas");
-  //Define size canvas. This global settings
+  //Define size canvas. This global settings.
   window.canvas.height = window.screen.height;
   window.canvas.width = canvas.height*1.777;
   if(canvas.height > 720) {
