@@ -100,7 +100,7 @@ var Click = {
        Model.stock(false);
     }
    //selection plants
-    var selection = Game_menu.array_for_stock;
+    var selection = Stock.plants;
     for(var i = 0; i < selection.length; i++) {
       if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
         Model.stock(selection[i]);

@@ -98,8 +98,6 @@ var Model = {
     //Define variables
     if(selection) {
       Stock.selection(selection.id_plant);
-      //window.stock = false;
-      //window.location_now = "game";
     } else {
       window.stock = false;
       window.location_now = "game";
@@ -141,7 +139,7 @@ var Model = {
       Game_menu.create_stock();
     }
     //add the amount of the crop in stock
-    Stock.restocking(Garden_bed.plants[number_plant].id);
+    Stock.restocking(Garden_bed.plants[number_plant].id, Garden_bed.plants[number_plant].price);
     Garden_bed.digging(number_place);//digging
     //and clear arrays
     Garden_bed.plants.splice(number_plant,1);

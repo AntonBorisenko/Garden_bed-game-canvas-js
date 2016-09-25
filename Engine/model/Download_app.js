@@ -75,7 +75,7 @@ var images_for_game =    ["img/Playing field/fone.jpg","img/Plants/ded.png","img
 
 
 //an array with plant pictures
-var img_plants_for_download =     ["img/Plants/potatoes.png","img/Plants/tomato.png","img/Plants/cabbage.png"];
+var img_plants_for_download =     ["img/Plants/ded.png","img/Plants/potatoes.png","img/Plants/tomato.png","img/Plants/cabbage.png"];
 
 
 //an array with downloaded main menu pictures
@@ -89,7 +89,7 @@ var img_game_menu_for_download = ["img/Game menu/exit_in_menu.png", "img/Game me
                                   "img/Game menu/bag.png", "img/Game menu/stock.png"];
 
 //an array with downloaded icons plants
-var img_plants_icons_for_download = ["img/Plants icons/potatoes.jpg", "img/Plants icons/tomato.png",
+var img_plants_icons_for_download = ["img/Plants/ded.png","img/Plants icons/potatoes.jpg", "img/Plants icons/tomato.png",
                                      "img/Plants icons/cabbage.png"];
 
 var img_for_stock = ["img/Stock/plate_stock.jpg", "img/Stock/exit_in_game.jpg"];

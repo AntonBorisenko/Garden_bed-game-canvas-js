@@ -40,22 +40,19 @@ var View = {
   paintStock: function() {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(Stock.x, Stock.y, Stock.size_x, Stock.size_y);
-    //paint plants icons
-    var stock_menu = Game_menu.array_for_stock;
-    var count_plants = Game_menu.array_for_stock_count_plants;
     ctx.fillStyle = "black";
     ctx.font = stock_count_text;
     //draw plate stock
     ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
     //draw plate exit in game
     ctx.drawImage(Download_app.images_stock[1], plate_exit_in_game_x, plate_exit_in_game_y, plate_exit_in_game_size_x, plate_exit_in_game_size_y);
-    for(var i = 0; i < stock_menu.length; i++) {
-      ctx.drawImage(stock_menu[i].img, stock_menu[i].x, stock_menu[i].y, stock_menu[i].size_x, stock_menu[i].size_y);
-      ctx.fillText(count_plants[i].count,count_plants[i].x,count_plants[i].y);
+    for(var i = 0; i < Stock.plants.length; i++) {
+      if(Stock.plants[i].count > 0) {
+        ctx.drawImage(Download_app.images_plants[Stock.plants[i].id_plant], Stock.plants[i].x, Stock.plants[i].y, Stock.plants[i].size_x, Stock.plants[i].size_y);
+        ctx.fillText(Stock.plants[i].count,Stock.plants[i].count_x,Stock.plants[i].count_y);
+      }
     }
-    if(Stock.sell == true) {
-      console.log("SELL!");
-    }
+
   },
 
   //PAINTING GAME

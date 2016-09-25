@@ -1,11 +1,12 @@
 "use strict";
 //PROTOTYPE PLANTS
-function Plant(id, name, img_number, x_cor, y_cor, place, water, grown) {
+function Plant(id, name, img_number, x_cor, y_cor, place, water, grown, price) {
   var plant_size = window.plant_size;
   this.id = id;
   this.name = name;
   this.status = "grow";
   this.img_number = img_number;
+  this.price = price;
   this.x = x_cor;
   this.y = y_cor;
   this.size = plant_size;
@@ -46,14 +47,15 @@ Plant.prototype.growing = function() {
 
 //Prototype POTATOES inherited from prototype plants
 function Potatoes(x,y,place,grown) {
-  var id = 0;
+  var id = 1;
   var name = "potatoes";
   var grown = 14000;
-  var img_number = 0;
+  var img_number = 1;
+  var price = 8;
   var water = 8000;
   var x_cor = x;
   var y_cor = y;
-  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown);
+  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price);
 }
 Potatoes.prototype = new Plant;
 Potatoes.prototype.constructor = Potatoes;
@@ -62,14 +64,15 @@ Potatoes.prototype.constructor = Potatoes;
 
 //Prototype TOMATO inherited from prototype plants
 function Tomato(x,y,place,grown) {
-  var id = 1;
+  var id = 2;
   var name = "tomato";
   var grown = 10000;
-  var img_number = 1;
+  var img_number = 2;
+  var price = 12;
   var water = 6000;
   var x_cor = x;
   var y_cor = y;
-  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown);
+  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price);
 }
 Tomato.prototype = new Plant;
 Tomato.prototype.constructor = Tomato;
@@ -78,14 +81,15 @@ Tomato.prototype.constructor = Tomato;
 
 //Prototype CABBAGE inherited from prototype plants
 function Cabbage(x,y,place,grown) {
-  var id = 2;
+  var id = 3;
   var name = "cabbage";
   var grown = 12000;
-  var img_number = 2;
+  var img_number = 3;
+  var price = 10;
   var water = 7000;
   var x_cor = x;
   var y_cor = y;
-  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown);
+  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price);
 }
 Cabbage.prototype = new Plant;
 Cabbage.prototype.constructor = Cabbage;

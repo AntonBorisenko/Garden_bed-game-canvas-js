@@ -142,26 +142,26 @@ var Global = {
     var distance_icon = canvas.width/80;
     window.size_stock_icon = canvas.height/13;
     //size_x and size_y
-    window.stock_potatoes_icon_size_x = window.stock_potatoes_icon_size_y =
-    window.stock_tomato_icon_size_x = window.stock_tomato_icon_size_y =
-    window.stock_cabbage_icon_size_x = window.stock_cabbage_icon_size_y = size_stock_icon;
+    window.first_position_icon_size_x = window.first_position_icon_size_y =
+    window.second_position_icon_size_x = window.second_position_icon_size_y =
+    window.third_position_icon_size_x = window.third_position_icon_size_y = size_stock_icon;
     //x
-    window.stock_potatoes_icon_x = stock_x + distance_icon;
-    window.stock_tomato_icon_x = stock_x + size_stock_icon + (distance_icon*2);
-    window.stock_cabbage_icon_x = stock_x + (size_stock_icon*2) + (distance_icon*3);
+    window.first_position_icon_x = stock_x + distance_icon;
+    window.second_position_icon_x = stock_x + size_stock_icon + (distance_icon*2);
+    window.third_position_icon_x = stock_x + (size_stock_icon*2) + (distance_icon*3);
     //y
-    var first_three_icon = window.stock_potatoes_icon_y = window.stock_tomato_icon_y =
-    window.stock_cabbage_icon_y = stock_y + (distance_icon*10);
+    var first_three_icon = window.first_position_icon_y = window.second_position_icon_y =
+    window.third_position_icon_y = stock_y + (distance_icon*10);
     //stock count
     var stock_size_px = canvas.width/71.1;
     window.stock_count_text = stock_size_px + "px Georgia";
     //x
-    window.stock_count_potatoes_x = stock_potatoes_icon_x + size_stock_icon;
-    window.stock_count_tomato_x = stock_tomato_icon_x + size_stock_icon;
-    window.stock_count_cabbage_x = stock_cabbage_icon_x + size_stock_icon;
+    window.stock_count_first_x = first_position_icon_x  + size_stock_icon;
+    window.stock_count_second_x = second_position_icon_x + size_stock_icon;
+    window.stock_count_third_x = third_position_icon_x + size_stock_icon;
     //y
-    window.stock_count_potatoes_y = window.stock_count_tomato_y =
-    window.stock_count_cabbage_y = first_three_icon;
+    window.stock_count_first_y = window.stock_count_second_y =
+    window.stock_count_third_y = first_three_icon;
   }
 
 }
