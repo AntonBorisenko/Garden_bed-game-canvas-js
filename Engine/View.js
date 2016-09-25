@@ -40,12 +40,16 @@ var View = {
   paintStock: function() {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(Stock.x, Stock.y, Stock.size_x, Stock.size_y);
-    ctx.fillStyle = "black";
-    ctx.font = stock_count_text;
     //draw plate stock
     ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
     //draw plate exit in game
     ctx.drawImage(Download_app.images_stock[1], plate_exit_in_game_x, plate_exit_in_game_y, plate_exit_in_game_size_x, plate_exit_in_game_size_y);
+    //paint user money
+    ctx.fillStyle = "black";
+    ctx.font = stock_money_user_text;
+    ctx.fillText("Бабосы: " + User.money, stock_money_user_x, stock_money_user_y);
+    //paint plants
+    ctx.font = stock_count_text;
     for(var i = 0; i < Stock.plants.length; i++) {
       if(Stock.plants[i].count > 0) {
         ctx.drawImage(Download_app.images_plants[Stock.plants[i].id_plant], Stock.plants[i].x, Stock.plants[i].y, Stock.plants[i].size_x, Stock.plants[i].size_y);
@@ -65,6 +69,10 @@ var View = {
     View.paintGameMenu();
     //if there are plants
     if(Garden_bed.plants.length > 0)  View.paint_plants();
+    //paint user money
+    ctx.fillStyle = "yellow";
+    ctx.font = money_user_text;
+    ctx.fillText("Бабосы: " + User.money, money_user_x, money_user_y);
     //if bag == true
     if(bag)  View.paintBag();
     //if planting == true
@@ -73,8 +81,6 @@ var View = {
 
   //paint game menu
   paintGameMenu: function() {
-    ctx.fillStyle = "green";
-    ctx.font = "bold 30px Arial";
     var game_menu = Game_menu.array_menu;
     for(var i = 0; i < 6;/*then change to the length of the array*/i++) {
       ctx.drawImage(game_menu[i].img, game_menu[i].x, game_menu[i].y, game_menu[i].size_x, game_menu[i].size_y);

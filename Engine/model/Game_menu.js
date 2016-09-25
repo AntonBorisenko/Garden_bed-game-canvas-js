@@ -207,7 +207,10 @@ var Stock = {
     for(var i = 0; i < Stock.plants.length; i++) {
       if(Stock.plants[i].id_plant == id_plant) {
         Stock.plants[i].count--;
-        User.money = User.money + Stock.plants[i].price;
+        if(Stock.plants[i].count < 1) {
+          Stock.plants[i].id_plant = false;
+        }
+        Model.sell_plant(Stock.plants[i].price);
         return;
       }
     }
@@ -233,11 +236,6 @@ var Stock = {
       }
     }
 
-  },
-
-  sell_plants: function(id_plant) {
-    Stock.plants[id_plant].count--;
-    Stock.sell = false;
   }
 
 }

@@ -144,6 +144,10 @@ var Model = {
     //and clear arrays
     Garden_bed.plants.splice(number_plant,1);
     Garden_bed.images_for_hurvest.splice(number_image_hurvest,1);
+  },
+
+  sell_plant: function(price) {
+    User.money = User.money + price;
   }
 
 }
