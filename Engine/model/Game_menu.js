@@ -207,7 +207,7 @@ var Stock = {
     for(var i = 0; i < Stock.plants.length; i++) {
       if(Stock.plants[i].id_plant == id_plant) {
         Stock.plants[i].count--;
-        console.log(Stock.plants[i].price);
+        User.money = User.money + Stock.plants[i].price;
         return;
       }
     }

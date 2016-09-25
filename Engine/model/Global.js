@@ -51,6 +51,11 @@ var Global = {
     window.garden_padding_top = window.garden_padding_bottom = canvas.height/50;
     window.garden_height = canvas.height - (window.garden_padding_left + window.garden_padding_top);
     window.garden_width = window.garden_height * 1.5;
+    //money User
+    var money_user_size_px = canvas.width/40;
+    window.money_user_text = "italic " + money_user_size_px + "px Arial";
+    window.money_user_x = garden_padding_left*2;
+    window.money_user_y = garden_padding_top*3.5;
     //hurvest_img_size
     window.hurvest_img_size = canvas.width/22.5;
     //garden bed places for planting and SIZE PLANT
@@ -138,6 +143,11 @@ var Global = {
     window.plate_stock_size_y = plate_stock_size_x/2;
     window.plate_stock_x = garden_padding_left*2;
     window.plate_stock_y = garden_padding_top*2;
+    //money User
+    var stock_money_user_size_px = canvas.width/50;
+    window.stock_money_user_text = "italic " + stock_money_user_size_px + "px Arial";
+    window.stock_money_user_x = garden_padding_left*4;
+    window.stock_money_user_y = (garden_padding_top*5) + plate_stock_size_y;
     //define proportion and location stock items
     var distance_icon = canvas.width/80;
     window.size_stock_icon = canvas.height/13;
@@ -151,7 +161,7 @@ var Global = {
     window.third_position_icon_x = stock_x + (size_stock_icon*2) + (distance_icon*3);
     //y
     var first_three_icon = window.first_position_icon_y = window.second_position_icon_y =
-    window.third_position_icon_y = stock_y + (distance_icon*10);
+    window.third_position_icon_y = stock_y + (distance_icon*13);
     //stock count
     var stock_size_px = canvas.width/71.1;
     window.stock_count_text = stock_size_px + "px Georgia";
