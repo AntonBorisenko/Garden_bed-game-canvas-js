@@ -11,6 +11,7 @@ var Global = {
     Global.define_game_menu_icons(canvas);
     Global.define_bag(canvas);
     Global.define_stock(canvas);
+    Global.define_prototype_plants();
   },
 
   define_download_app: function(canvas) {
@@ -21,11 +22,11 @@ var Global = {
   },
 
   define_status_variables: function(canvas) {
-    window.location_now;       //location
-    window.bag = false;       //the state of the bag
-    window.stock = false;     //the state of the stock
-    window.planting = false;  //the state of the planting
-    window.plant_for_planting = false;  //Choose plants for planting
+    window.location_now;                  //location
+    window.bag = false;                   //the state of the bag
+    window.stock = false;                 //the state of the stock
+    window.planting = false;              //the state of the planting
+    window.plant_for_planting = false;    //Choose plants for planting
     window.stock_selection = false;
   },
 
@@ -115,16 +116,26 @@ var Global = {
     var distance_icon = canvas.width/80;
     window.size_bag_icon = canvas.height/13;
     //size_x and size_y
-    window.bag_potatoes_icon_size_x = window.bag_potatoes_icon_size_y =
-    window.bag_tomato_icon_size_x = window.bag_tomato_icon_size_y =
-    window.bag_cabbage_icon_size_x = window.bag_cabbage_icon_size_y = size_bag_icon;
+    window.bag_first_position_icon_size_x = window.bag_first_position_icon_size_y =
+    window.bag_second_position_icon_size_x = window.bag_second_position_icon_size_y =
+    window.bag_third_position_icon_size_x = window.bag_third_position_icon_size_y = size_bag_icon;
     //x
-    window.bag_potatoes_icon_x = bag_x + distance_icon;
-    window.bag_tomato_icon_x = bag_x + size_bag_icon + (distance_icon*2);
-    window.bag_cabbage_icon_x = bag_x + (size_bag_icon*2) + (distance_icon*3);
+    window.bag_first_position_icon_x = bag_x + distance_icon;
+    window.bag_second_position_icon_x = bag_x + size_bag_icon + (distance_icon*2);
+    window.bag_third_position_icon_x = bag_x + (size_bag_icon*2) + (distance_icon*3);
     //y
-    window.bag_potatoes_icon_y = window.bag_tomato_icon_y =
-    window.bag_cabbage_icon_y = bag_y + distance_icon;
+    var first_three_icon = window.bag_first_position_icon_y = window.bag_second_position_icon_y =
+    window.bag_third_position_icon_y = bag_y + distance_icon;
+    //bag count
+    var bag_size_px = canvas.width/71.1;
+    window.bag_count_text = bag_size_px + "px Georgia";
+    //x
+    window.bag_count_first_x = bag_first_position_icon_x  + size_bag_icon;
+    window.bag_count_second_x = bag_second_position_icon_x + size_bag_icon;
+    window.bag_count_third_x = bag_third_position_icon_x + size_bag_icon;
+    //y
+    window.bag_count_first_y = window.bag_count_second_y =
+    window.bag_count_third_y = first_three_icon;
   },
 
   define_stock: function(canvas) {
@@ -152,26 +163,32 @@ var Global = {
     var distance_icon = canvas.width/80;
     window.size_stock_icon = canvas.height/13;
     //size_x and size_y
-    window.first_position_icon_size_x = window.first_position_icon_size_y =
-    window.second_position_icon_size_x = window.second_position_icon_size_y =
-    window.third_position_icon_size_x = window.third_position_icon_size_y = size_stock_icon;
+    window.stock_first_position_icon_size_x = window.stock_first_position_icon_size_y =
+    window.stock_second_position_icon_size_x = window.stock_second_position_icon_size_y =
+    window.stock_third_position_icon_size_x = window.stock_third_position_icon_size_y = size_stock_icon;
     //x
-    window.first_position_icon_x = stock_x + distance_icon;
-    window.second_position_icon_x = stock_x + size_stock_icon + (distance_icon*2);
-    window.third_position_icon_x = stock_x + (size_stock_icon*2) + (distance_icon*3);
+    window.stock_first_position_icon_x = stock_x + distance_icon;
+    window.stock_second_position_icon_x = stock_x + size_stock_icon + (distance_icon*2);
+    window.stock_third_position_icon_x = stock_x + (size_stock_icon*2) + (distance_icon*3);
     //y
-    var first_three_icon = window.first_position_icon_y = window.second_position_icon_y =
-    window.third_position_icon_y = stock_y + (distance_icon*13);
+    var first_three_icon = window.stock_first_position_icon_y = window.stock_second_position_icon_y =
+    window.stock_third_position_icon_y = stock_y + (distance_icon*13);
     //stock count
     var stock_size_px = canvas.width/71.1;
     window.stock_count_text = stock_size_px + "px Georgia";
     //x
-    window.stock_count_first_x = first_position_icon_x  + size_stock_icon;
-    window.stock_count_second_x = second_position_icon_x + size_stock_icon;
-    window.stock_count_third_x = third_position_icon_x + size_stock_icon;
+    window.stock_count_first_x = stock_first_position_icon_x  + size_stock_icon;
+    window.stock_count_second_x = stock_second_position_icon_x + size_stock_icon;
+    window.stock_count_third_x = stock_third_position_icon_x + size_stock_icon;
     //y
     window.stock_count_first_y = window.stock_count_second_y =
     window.stock_count_third_y = first_three_icon;
+  },
+
+  define_prototype_plants: function() {
+    window.potatoes_price = 6;
+    window.tomato_price = 10;
+    window.cabbage_price = 8;
   }
 
 }

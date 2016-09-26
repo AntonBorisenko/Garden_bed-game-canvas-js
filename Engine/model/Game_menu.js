@@ -8,6 +8,7 @@ var Game_menu = {
   array_for_bag: [],
   array_for_stock: [],
   array_for_stock_count_plants: [],
+  array_plants: [],
 
   make: function() {
     //zero out an array
@@ -15,10 +16,15 @@ var Game_menu = {
 
     function create_menu_item(img, x, y, size_x, size_y, Obj_name) {
       //Create Object_menu_item
-      var menu_icon = new Game_menu.create_object(img, Obj_name, x, y, size_x ,size_y);
+      var menu_icon = new Create_object(img, Obj_name, x, y, size_x ,size_y);//functions.js
       //Add in array
       Game_menu.array_menu.push(menu_icon);
       if(Game_menu.array_menu.length == 6) {
+        if(Game_menu.array_plants.length == 0) {
+          Game_menu.create_array_plants();
+          Game_menu.create_bag();
+          Game_menu.create_stock();
+        }
         //responce on the task
         Model.responce("game menu complete");
       }
@@ -29,65 +35,52 @@ var Game_menu = {
     create_menu_item(Download_app.images_game_menu[3], game_menu_icon_shovel_x, game_menu_icon_shovel_y, game_menu_icon_shovel_size_x, game_menu_icon_shovel_size_y, "Shovel");//shovel
     create_menu_item(Download_app.images_game_menu[4], game_menu_icon_bag_x, game_menu_icon_bag_y, game_menu_icon_bag_size_x, game_menu_icon_bag_size_y, "Bag");//bag
     create_menu_item(Download_app.images_game_menu[5], game_menu_icon_stock_x, game_menu_icon_stock_y, game_menu_icon_stock_size_x, game_menu_icon_stock_size_y, "Stock");//stock
+
+  },
+
+  create_array_plants: function() {
+
+    function create_plants(Obj_name, id_plant, count, price) {
+      var plant = new Create_plant(Obj_name, id_plant, count, price);//functions.js
+      Game_menu.array_plants.push(plant);
+    }
+    create_plants(Potatoes, 1, 4, potatoes_price);
+    create_plants(Tomato, 2, 2, tomato_price);
+    create_plants(Cabbage, 3, 6, cabbage_price);
+
   },
 
   //create objects menu for bag
   create_bag: function() {
 
-    function create_menu_item(img, x, y, size_x, size_y, Obj_name) {
-      //Create Object_menu_item
-      var menu_icon = new Game_menu.create_object(img, Obj_name, x, y, size_x ,size_y);
+    function create_position_menu_item(x, y, size_x, size_y, count_x, count_y) {
+      var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);//functions.js
       //Add in array
       Game_menu.array_for_bag.push(menu_icon);
-      if(Game_menu.array_for_bag.length == 3) {
-        //bag menu completed
-      }
     }
-    create_menu_item(Download_app.images_plants_icons[1], bag_potatoes_icon_x, bag_potatoes_icon_y, size_bag_icon, size_bag_icon, Potatoes);//potatoes
-    create_menu_item(Download_app.images_plants_icons[2], bag_tomato_icon_x, bag_tomato_icon_y, size_bag_icon, size_bag_icon, Tomato);//tomato
-    create_menu_item(Download_app.images_plants_icons[3], bag_cabbage_icon_x, bag_cabbage_icon_y, size_bag_icon, size_bag_icon, Cabbage);//cabbage
+
+    create_position_menu_item(bag_first_position_icon_x, bag_first_position_icon_y, size_bag_icon, size_bag_icon, bag_count_first_x, bag_count_first_y);//first position
+    create_position_menu_item(bag_second_position_icon_x, bag_second_position_icon_y, size_bag_icon, size_bag_icon, bag_count_second_x, bag_count_second_y);//second position
+    create_position_menu_item(bag_third_position_icon_x, bag_third_position_icon_y, size_bag_icon, size_bag_icon, bag_count_third_x, bag_count_third_y);//third position
+
+    Bag.positions = Game_menu.array_for_bag;
+
   },
 
   //create objects menu for stock
   create_stock: function() {
 
-    //constructor for plants_for_sell(icons)
-    function Create_object_position(x, y, size_x, size_y, count_x, count_y) {
-      this.x = x;
-      this.y = y;
-      this.size_x = size_x;
-      this.size_y = size_y;
-      this.id_plant = false;
-      this.count = 0;
-      this.count_x = count_x;
-      this.count_y = count_y;
-      this.price = false;
-    }
-
     function create_position_menu_item(x, y, size_x, size_y, count_x, count_y) {
-      var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);
+      var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);//functions.js
       //Add in array
       Game_menu.array_for_stock.push(menu_icon);
     }
+    create_position_menu_item(stock_first_position_icon_x, stock_first_position_icon_y, size_stock_icon, size_stock_icon, stock_count_first_x, stock_count_first_y);//first position
+    create_position_menu_item(stock_second_position_icon_x, stock_second_position_icon_y, size_stock_icon, size_stock_icon, stock_count_second_x, stock_count_second_y);//second position
+    create_position_menu_item(stock_third_position_icon_x, stock_third_position_icon_y, size_stock_icon, size_stock_icon, stock_count_third_x, stock_count_third_y);//third position
 
-    create_position_menu_item(first_position_icon_x, first_position_icon_y, size_stock_icon, size_stock_icon, stock_count_first_x, stock_count_first_y);//first position
-    create_position_menu_item(second_position_icon_x, second_position_icon_y, size_stock_icon, size_stock_icon, stock_count_second_x, stock_count_second_y);//second position
-    create_position_menu_item(third_position_icon_x, third_position_icon_y, size_stock_icon, size_stock_icon, stock_count_third_x, stock_count_third_y);//third position
+    Stock.positions = Game_menu.array_for_stock;
 
-  },
-
-  //Protoype menu icons and menu items
-  create_object: function(img,Obj_name,x,y,size_x,size_y, id_plant) {
-    this.img = img;
-    this.Obj_name = Obj_name;
-    this.x = x;
-    this.y = y;
-    this.size_x = size_x;
-    this.size_y = size_y;
-    //УДАЛИТЬ ЭТО, ЕСЛИ ВСЁ РАБОТАЕТ
-    // if(id_plant == 0 || id_plant > 0) {
-    //   this.id_plant = id_plant;
-    // }
   },
 
   click_on_the_item: function(item) {
@@ -149,6 +142,7 @@ var Bag = {
   y:0,
   size_x:0,
   size_y:0,
+  positions: null,
 
   click_on_the_icon: function() {
     if(!Bag.x||!Bag.y||!Bag.size_x||Bag.size_y) {
@@ -156,9 +150,6 @@ var Bag = {
     }
     window.bag = true;
     window.location_now = "bag";
-    if(Game_menu.array_for_bag.length == 0) {
-      Game_menu.create_bag();
-    }
   },
 
   init_proportions: function() {
@@ -180,7 +171,7 @@ var Stock = {
   size_x: 0,
   size_y: 0,
 
-  plants: null,
+  positions: null,
 
   //public methods
   click_on_the_icon: function() {
@@ -188,10 +179,7 @@ var Stock = {
       Stock.init_proportions();
     }
     window.stock = true;
-     window.location_now = "stock";
-     if(Game_menu.array_for_stock.length == 0) {
-       Game_menu.create_stock();
-     }
+    window.location_now = "stock";
   },
 
   init_proportions: function() {
@@ -199,43 +187,6 @@ var Stock = {
       Stock.y = stock_y;
       Stock.size_x = stock_size_x;
       Stock.size_y = stock_size_y;
-      Stock.plants = Game_menu.array_for_stock;
-  },
-
-  selection: function(id_plant) {
-
-    for(var i = 0; i < Stock.plants.length; i++) {
-      if(Stock.plants[i].id_plant == id_plant) {
-        Stock.plants[i].count--;
-        if(Stock.plants[i].count < 1) {
-          Stock.plants[i].id_plant = false;
-        }
-        Model.sell_plant(Stock.plants[i].price);
-        return;
-      }
-    }
-
-  },
-
-  restocking: function(id_plant, price) {
-
-    if(Stock.plants == null) {
-      Stock.plants = Game_menu.array_for_stock;
-    }
-
-    for(var i = 0; i < Stock.plants.length; i++) {
-      if(Stock.plants[i].id_plant == id_plant) {
-        Stock.plants[i].count++;
-        Stock.plants[i].price = price;
-        return;
-      } else if(Stock.plants[i].id_plant == false) {
-        Stock.plants[i].id_plant = id_plant;
-        Stock.plants[i].count++;
-        Stock.plants[i].price = price;
-        return;
-      }
-    }
-
   }
 
 }

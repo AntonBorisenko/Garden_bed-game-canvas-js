@@ -71,9 +71,10 @@ var Click = {
           for(var n = 0; n < Garden_bed.plants.length; n++) {
             if(Garden_bed.plants[n].place == hurvest[i].place) {
               var number_plant = n;
+              var id_plant = Garden_bed.plants[n].id;
             }
           }
-          Model.hurvesting(hurvest[i].place,number_plant,i);//hurvesting
+          Model.hurvesting(hurvest[i].place, number_plant, i, id_plant);//hurvesting
         }
       }
     }
@@ -82,10 +83,14 @@ var Click = {
   //if the open bag for plant selection
   bag: function(x,y) {
     if((x > Bag.x && x < (Bag.x + Bag.size_x)) && (y > Bag.y && y < (Bag.y + Bag.size_y)) ) {
-       var selection = Game_menu.array_for_bag;
-       for(var i = 0; i < selection.length; i++) {
-         if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
-           Model.bag(selection[i]);
+       var selection = Bag.positions;
+       var j = 0;
+       for(var i = 0; i < Game_menu.array_plants.length; i++) {
+         if(Game_menu.array_plants[i].count > 0) {
+           if((x > selection[j].x && x < (selection[j].x + selection[j].size_x)) && (y > selection[j].y && y < (selection[j].y + selection[j].size_y)) ) {
+              Model.bag(i);
+           }
+           j++;
          }
        }
      } else {
@@ -97,13 +102,17 @@ var Click = {
   stock: function(x,y) {
     //exit in game
     if((x > plate_exit_in_game_x && x < (plate_exit_in_game_x + plate_exit_in_game_size_x)) && (y > plate_exit_in_game_y && y < (plate_exit_in_game_y + plate_exit_in_game_size_y)) ) {
-       Model.stock(false);
+      Model.stock(false);
     }
    //selection plants
-    var selection = Stock.plants;
-    for(var i = 0; i < selection.length; i++) {
-      if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
-        Model.stock(selection[i]);
+    var selection = Stock.positions;
+    var j = 0;
+    for(var i = 0; i < Game_menu.array_plants.length; i++) {
+      if(Game_menu.array_plants[i].count > 0) {
+        if((x > selection[j].x && x < (selection[j].x + selection[j].size_x)) && (y > selection[j].y && y < (selection[j].y + selection[j].size_y)) ) {
+          Model.stock(i);
+        }
+        j++;
       }
     }
 

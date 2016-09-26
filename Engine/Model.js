@@ -82,10 +82,11 @@ var Model = {
   //if the open bag for plant selection
   bag: function(selection) {
     //Define variables
-    if(selection) {
-      window.plant_for_planting = selection.Obj_name;
+    if(selection === 0 || selection > 0) {
+      window.plant_for_planting = Game_menu.array_plants[selection].Obj_name;
       window.planting = true;
       window.location_now = "planting";
+      Game_menu.array_plants[selection].count--;
     } else {
       window.bag = false;
       window.location_now = "game";
@@ -96,8 +97,9 @@ var Model = {
   //if the open stock for plant selection
   stock: function(selection) {
     //Define variables
-    if(selection) {
-      Stock.selection(selection.id_plant);
+    if(selection === 0 || selection > 0) {
+      Game_menu.array_plants[selection].count--;
+      Model.sell_plant(Game_menu.array_plants[selection].price);
     } else {
       window.stock = false;
       window.location_now = "game";
@@ -133,13 +135,13 @@ var Model = {
     Garden_bed.images_for_hurvest.push(harvest_img);
   },
 
-  hurvesting: function(number_place,number_plant,number_image_hurvest) {
-    //create stock
-    if(Game_menu.array_for_stock.length == 0) {
-      Game_menu.create_stock();
+  hurvesting: function(number_place,number_plant,number_image_hurvest, id_plant) {
+    var plants = Game_menu.array_plants;
+    for(var i = 0; i < plants.length; i++ ) {
+      if(plants[i].id_plant == id_plant) {
+        plants[i].count++;
+      }
     }
-    //add the amount of the crop in stock
-    Stock.restocking(Garden_bed.plants[number_plant].id, Garden_bed.plants[number_plant].price);
     Garden_bed.digging(number_place);//digging
     //and clear arrays
     Garden_bed.plants.splice(number_plant,1);

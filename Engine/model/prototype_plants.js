@@ -51,7 +51,7 @@ function Potatoes(x,y,place,grown) {
   var name = "potatoes";
   var grown = 14000;
   var img_number = 1;
-  var price = 8;
+  var price = potatoes_price;
   var water = 8000;
   var x_cor = x;
   var y_cor = y;
@@ -68,7 +68,7 @@ function Tomato(x,y,place,grown) {
   var name = "tomato";
   var grown = 10000;
   var img_number = 2;
-  var price = 12;
+  var price = tomato_price;
   var water = 6000;
   var x_cor = x;
   var y_cor = y;
@@ -85,7 +85,7 @@ function Cabbage(x,y,place,grown) {
   var name = "cabbage";
   var grown = 12000;
   var img_number = 3;
-  var price = 10;
+  var price = cabbage_price;
   var water = 7000;
   var x_cor = x;
   var y_cor = y;

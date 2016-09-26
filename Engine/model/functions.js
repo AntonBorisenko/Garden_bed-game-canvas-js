@@ -35,3 +35,31 @@ function findPosY(obj) {
     }
     return curtop;
 }
+
+//FUNCTIONS FOR Game_mune.js
+
+function Create_object(img, Obj_name, x, y, size_x ,size_y) {
+  this.img = img;
+  this.Obj_name = Obj_name;
+  this.x = x;
+  this.y = y;
+  this.size_x = size_x;
+  this.size_y = size_y;
+}
+
+//constructor for menu stock and bag(positions)
+function Create_object_position(x, y, size_x, size_y, count_x, count_y) {
+  this.x = x;
+  this.y = y;
+  this.size_x = size_x;
+  this.size_y = size_y;
+  this.count_x = count_x;
+  this.count_y = count_y;
+}
+
+function Create_plant(Obj_name, id_plant, count, price) {
+  this.Obj_name = Obj_name;
+  this.id_plant = id_plant;
+  this.count = count;
+  this.price = price;
+}

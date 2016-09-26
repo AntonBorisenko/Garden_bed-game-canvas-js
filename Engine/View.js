@@ -50,10 +50,13 @@ var View = {
     ctx.fillText("Бабосы: " + User.money, stock_money_user_x, stock_money_user_y);
     //paint plants
     ctx.font = stock_count_text;
-    for(var i = 0; i < Stock.plants.length; i++) {
-      if(Stock.plants[i].count > 0) {
-        ctx.drawImage(Download_app.images_plants[Stock.plants[i].id_plant], Stock.plants[i].x, Stock.plants[i].y, Stock.plants[i].size_x, Stock.plants[i].size_y);
-        ctx.fillText(Stock.plants[i].count,Stock.plants[i].count_x,Stock.plants[i].count_y);
+    var plants = Game_menu.array_plants;
+    var j = 0;
+    for(var i = 0; i < plants.length; i++) {
+      if(plants[i].count > 0) {
+        ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
+        ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
+        j++;
       }
     }
 
@@ -118,9 +121,16 @@ var View = {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(Bag.x, Bag.y, Bag.size_x, Bag.size_y);
     //paint plants icons
-    var bag_menu = Game_menu.array_for_bag;
-    for(var i = 0; i < bag_menu.length; i++) {
-      ctx.drawImage(bag_menu[i].img, bag_menu[i].x, bag_menu[i].y, bag_menu[i].size_x, bag_menu[i].size_y);
+    ctx.fillStyle = "black";
+    ctx.font = bag_count_text;
+    var plants = Game_menu.array_plants;
+    var j = 0;
+    for(var i = 0; i < plants.length; i++) {
+      if(plants[i].count > 0) {
+        ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Bag.positions[j].x, Bag.positions[j].y, Bag.positions[j].size_x, Bag.positions[j].size_y);
+        ctx.fillText(plants[i].count, Bag.positions[j].count_x, Bag.positions[j].count_y);
+        j++;
+      }
     }
   },
 
