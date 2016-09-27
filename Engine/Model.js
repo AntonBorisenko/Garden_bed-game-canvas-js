@@ -106,6 +106,13 @@ var Model = {
     }
   },
 
+  shop: function(status) {
+    if(status === false) {
+      window.shop = false;
+      window.location_now = "game";
+    }
+  },
+
   //planting plant
   planting: function(number_place) {
     window.planting = false;

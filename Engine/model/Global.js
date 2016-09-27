@@ -11,6 +11,7 @@ var Global = {
     Global.define_game_menu_icons(canvas);
     Global.define_bag(canvas);
     Global.define_stock(canvas);
+    Global.define_shop(canvas);
     Global.define_prototype_plants();
   },
 
@@ -25,6 +26,7 @@ var Global = {
     window.location_now;                  //location
     window.bag = false;                   //the state of the bag
     window.stock = false;                 //the state of the stock
+    window.shop = false;
     window.planting = false;              //the state of the planting
     window.plant_for_planting = false;    //Choose plants for planting
     window.stock_selection = false;
@@ -84,14 +86,16 @@ var Global = {
     window.game_menu_icon_bailer_size_y = window.game_menu_icon_sprayer_size_y =
     window.game_menu_icon_shovel_size_y = window.game_menu_icon_bag_size_y = size_small_icons;
     //size x menu, bag
-    window.game_menu_icon_menu_size_x = window.game_menu_icon_stock_size_x = (size_smal_icons_x*2) + distance_icons;
+    window.game_menu_icon_menu_size_x = window.game_menu_icon_stock_size_x =
+    window.game_menu_icon_shop_size_x =(size_smal_icons_x*2) + distance_icons;
     //size y menu, bag
-    window.game_menu_icon_menu_size_y = window.game_menu_icon_stock_size_y = size_small_icons;
+    window.game_menu_icon_menu_size_y = window.game_menu_icon_stock_size_y =
+    window.game_menu_icon_shop_size_y = size_small_icons;
 
     //LOCATION GAME MENU ICONS
     //x menu, bailer, shovel, stock
     var position_left_icons_x = window.game_menu_icon_menu_x = window.game_menu_icon_bailer_x =
-    window.game_menu_icon_shovel_x = window.game_menu_icon_stock_x =
+    window.game_menu_icon_shovel_x = window.game_menu_icon_stock_x = window.game_menu_icon_shop_x =
     garden_width + garden_padding_left + distance_icons;
     //x sprayer, bag
     window.game_menu_icon_sprayer_x = window.game_menu_icon_bag_x =
@@ -103,6 +107,7 @@ var Global = {
     window.game_menu_icon_shovel_y = window.game_menu_icon_bag_y =
     game_menu_icon_bailer_y + size_smal_icons_x + distance_icons;
     window.game_menu_icon_stock_y = game_menu_icon_shovel_y + size_smal_icons_x + distance_icons;
+    window.game_menu_icon_shop_y = window.game_menu_icon_stock_y + size_smal_icons_x + distance_icons;
   },
 
   //define bag location and proportions, and bag items
@@ -145,10 +150,10 @@ var Global = {
     window.stock_x = garden_padding_left;
     window.stock_y = garden_padding_top;
     //icon exit in game
-    window.plate_exit_in_game_size_x = canvas.width/6;
-    window.plate_exit_in_game_size_y = plate_exit_in_game_size_x/2;
-    window.plate_exit_in_game_x = canvas.width - canvas.width/5;
-    window.plate_exit_in_game_y = garden_padding_top*2;
+    window.stock_exit_in_game_size_x = canvas.width/6;
+    window.stock_exit_in_game_size_y = stock_exit_in_game_size_x/2;
+    window.stock_exit_in_game_x = canvas.width - canvas.width/5;
+    window.stock_exit_in_game_y = garden_padding_top*2;
     //icon stock
     window.plate_stock_size_x = canvas.width/6;
     window.plate_stock_size_y = plate_stock_size_x/2;
@@ -183,6 +188,24 @@ var Global = {
     //y
     window.stock_count_first_y = window.stock_count_second_y =
     window.stock_count_third_y = first_three_icon;
+  },
+
+  define_shop: function(canvas) {
+    //define stock coordinates and bag size_x
+    window.shop_size_x = canvas.width - (garden_padding_left + garden_padding_right);
+    window.shop_size_y = canvas.height - (garden_padding_top + garden_padding_bottom);
+    window.shop_x = garden_padding_left;
+    window.shop_y = garden_padding_top;
+    //icon exit in game
+    window.shop_exit_in_game_size_x = canvas.width/6;
+    window.shop_exit_in_game_size_y = shop_exit_in_game_size_x/2;
+    window.shop_exit_in_game_x = canvas.width - canvas.width/5;
+    window.shop_exit_in_game_y = garden_padding_top*2;
+    //money User
+    var shop_money_user_size_px = canvas.width/50;
+    window.shop_money_user_text = "italic " + shop_money_user_size_px + "px Arial";
+    window.shop_money_user_x = garden_padding_left*4;
+    window.shop_money_user_y = (garden_padding_top*5) + shop_size_y;
   },
 
   define_prototype_plants: function() {

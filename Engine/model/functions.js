@@ -38,21 +38,18 @@ function findPosY(obj) {
 
 //FUNCTIONS FOR Game_mune.js
 
-function Create_object(img, Obj_name, x, y, size_x ,size_y) {
-  this.img = img;
-  this.Obj_name = Obj_name;
+function Create_object(x, y, size_x ,size_y, img, Obj_name) {
   this.x = x;
   this.y = y;
   this.size_x = size_x;
   this.size_y = size_y;
+  this.img = img;
+  this.Obj_name = Obj_name;
 }
 
 //constructor for menu stock and bag(positions)
 function Create_object_position(x, y, size_x, size_y, count_x, count_y) {
-  this.x = x;
-  this.y = y;
-  this.size_x = size_x;
-  this.size_y = size_y;
+  Create_object.call(this, x, y, size_x, size_y);
   this.count_x = count_x;
   this.count_y = count_y;
 }

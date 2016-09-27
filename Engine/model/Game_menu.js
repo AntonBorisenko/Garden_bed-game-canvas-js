@@ -16,10 +16,10 @@ var Game_menu = {
 
     function create_menu_item(img, x, y, size_x, size_y, Obj_name) {
       //Create Object_menu_item
-      var menu_icon = new Create_object(img, Obj_name, x, y, size_x ,size_y);//functions.js
+      var menu_icon = new Create_object(x, y, size_x ,size_y, img, Obj_name);//functions.js
       //Add in array
       Game_menu.array_menu.push(menu_icon);
-      if(Game_menu.array_menu.length == 6) {
+      if(Game_menu.array_menu.length == 7) {
         if(Game_menu.array_plants.length == 0) {
           Game_menu.create_array_plants();
           Game_menu.create_bag();
@@ -35,11 +35,12 @@ var Game_menu = {
     create_menu_item(Download_app.images_game_menu[3], game_menu_icon_shovel_x, game_menu_icon_shovel_y, game_menu_icon_shovel_size_x, game_menu_icon_shovel_size_y, "Shovel");//shovel
     create_menu_item(Download_app.images_game_menu[4], game_menu_icon_bag_x, game_menu_icon_bag_y, game_menu_icon_bag_size_x, game_menu_icon_bag_size_y, "Bag");//bag
     create_menu_item(Download_app.images_game_menu[5], game_menu_icon_stock_x, game_menu_icon_stock_y, game_menu_icon_stock_size_x, game_menu_icon_stock_size_y, "Stock");//stock
+    create_menu_item(Download_app.images_game_menu[6], game_menu_icon_shop_x, game_menu_icon_shop_y, game_menu_icon_shop_size_x, game_menu_icon_shop_size_y, "Shop");//shop
 
   },
 
   create_array_plants: function() {
-
+    //array plants for stock and bag
     function create_plants(Obj_name, id_plant, count, price) {
       var plant = new Create_plant(Obj_name, id_plant, count, price);//functions.js
       Game_menu.array_plants.push(plant);
@@ -50,9 +51,9 @@ var Game_menu = {
 
   },
 
-  //create objects menu for bag
-  create_bag: function() {
 
+  create_bag: function() {
+    //create positions plants
     function create_position_menu_item(x, y, size_x, size_y, count_x, count_y) {
       var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);//functions.js
       //Add in array
@@ -69,7 +70,7 @@ var Game_menu = {
 
   //create objects menu for stock
   create_stock: function() {
-
+    //create positions plants
     function create_position_menu_item(x, y, size_x, size_y, count_x, count_y) {
       var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);//functions.js
       //Add in array
@@ -102,6 +103,9 @@ var Game_menu = {
         break;
       case "Stock":
         Stock.click_on_the_icon();
+        break;
+      case "Shop":
+        Shop.click_on_the_icon();
         break;
      }
   }
@@ -171,8 +175,6 @@ var Stock = {
   size_x: 0,
   size_y: 0,
 
-  positions: null,
-
   //public methods
   click_on_the_icon: function() {
     if(!this.x||!this.y||!this.size_x||this.size_y) {
@@ -187,6 +189,33 @@ var Stock = {
       Stock.y = stock_y;
       Stock.size_x = stock_size_x;
       Stock.size_y = stock_size_y;
+  }
+
+}
+
+var Shop = {
+  //public properties
+  x: 0,
+  y: 0,
+  size_x: 0,
+  size_y: 0,
+
+  positions: null,
+
+  //public methods
+  click_on_the_icon: function() {
+    if(!this.x||!this.y||!this.size_x||this.size_y) {
+      Shop.init_proportions();
+    }
+    window.shop = true;
+    window.location_now = "shop";
+  },
+
+  init_proportions: function() {
+      Shop.x = shop_x;
+      Shop.y = shop_y;
+      Shop.size_x = shop_size_x;
+      Shop.size_y = shop_size_y;
   }
 
 }

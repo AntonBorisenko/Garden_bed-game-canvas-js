@@ -21,6 +21,8 @@ var View = {
         View.draw_main_menu();
     } else if(location_now == "stock") {
         View.paintStock();
+    } else if(location_now == "shop") {
+        View.paintShop();
     } else {
         View.draw_game();
     }
@@ -43,7 +45,7 @@ var View = {
     //draw plate stock
     ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
     //draw plate exit in game
-    ctx.drawImage(Download_app.images_stock[1], plate_exit_in_game_x, plate_exit_in_game_y, plate_exit_in_game_size_x, plate_exit_in_game_size_y);
+    ctx.drawImage(Download_app.images_stock[1], stock_exit_in_game_x, stock_exit_in_game_y, stock_exit_in_game_size_x, stock_exit_in_game_size_y);
     //paint user money
     ctx.fillStyle = "black";
     ctx.font = stock_money_user_text;
@@ -60,6 +62,30 @@ var View = {
       }
     }
 
+  },
+
+  paintShop: function() {
+    ctx.fillStyle = "lightgray";
+    ctx.fillRect(Shop.x, Shop.y, Shop.size_x, Shop.size_y);
+    //draw plate stock
+    ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
+    //draw plate exit in game
+    ctx.drawImage(Download_app.images_stock[1], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
+    //paint user money
+    ctx.fillStyle = "black";
+    ctx.font = shop_money_user_text;
+    ctx.fillText("Бабосы: " + User.money, shop_money_user_x, shop_money_user_y);
+    //paint plants
+    ctx.font = stock_count_text;
+    var plants = Game_menu.array_plants;
+    var j = 0;
+    for(var i = 0; i < plants.length; i++) {
+      if(plants[i].count > 0) {
+        ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
+        ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
+        j++;
+      }
+    }
   },
 
   //PAINTING GAME
@@ -85,7 +111,7 @@ var View = {
   //paint game menu
   paintGameMenu: function() {
     var game_menu = Game_menu.array_menu;
-    for(var i = 0; i < 6;/*then change to the length of the array*/i++) {
+    for(var i = 0; i < 7;/*then change to the length of the array*/i++) {
       ctx.drawImage(game_menu[i].img, game_menu[i].x, game_menu[i].y, game_menu[i].size_x, game_menu[i].size_y);
     }
   },

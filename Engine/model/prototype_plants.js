@@ -93,3 +93,21 @@ function Cabbage(x,y,place,grown) {
 }
 Cabbage.prototype = new Plant;
 Cabbage.prototype.constructor = Cabbage;
+Cabbage.prototype.watering = function(bailer) {
+  //watering
+  if(bailer) {
+    this.water = this.water + 100000;
+  }
+  //drying plant
+  this.water = this.water - View.interval;
+  if(this.water > 5000) {
+      this.img_number = 3;
+  } else if (this.water < 3000 && this.water > 1500) {
+      this.img_number = 4;
+  } else if(this.water < 1500 && this.water > 0) {
+      this.img_number = 5;
+  } else if(this.water < 0) {
+      this.status = "ded";
+  }
+
+}

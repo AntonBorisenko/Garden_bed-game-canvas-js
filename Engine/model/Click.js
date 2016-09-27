@@ -29,6 +29,10 @@ var Click = {
         Click.stock(x,y);
       break;
 
+      case "shop":
+        Click.shop(x,y);
+      break;
+
       case "planting":
         Click.planting(x,y);
       break;
@@ -101,7 +105,7 @@ var Click = {
   //if the open stock for plant selection
   stock: function(x,y) {
     //exit in game
-    if((x > plate_exit_in_game_x && x < (plate_exit_in_game_x + plate_exit_in_game_size_x)) && (y > plate_exit_in_game_y && y < (plate_exit_in_game_y + plate_exit_in_game_size_y)) ) {
+    if((x > stock_exit_in_game_x && x < (stock_exit_in_game_x + stock_exit_in_game_size_x)) && (y > stock_exit_in_game_y && y < (stock_exit_in_game_y + stock_exit_in_game_size_y)) ) {
       Model.stock(false);
     }
    //selection plants
@@ -114,6 +118,14 @@ var Click = {
         }
         j++;
       }
+    }
+
+  },
+
+  shop: function(x,y) {
+    //exit in game
+    if((x > shop_exit_in_game_x && x < (shop_exit_in_game_x + shop_exit_in_game_size_x)) && (y > shop_exit_in_game_y && y < (shop_exit_in_game_y + shop_exit_in_game_size_y)) ) {
+      Model.shop(false);
     }
 
   },
