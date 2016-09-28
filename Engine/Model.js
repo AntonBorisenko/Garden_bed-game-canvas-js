@@ -156,7 +156,13 @@ var Model = {
     var plants = Game_menu.array_plants;
     for(var i = 0; i < plants.length; i++ ) {
       if(plants[i].id_plant == id_plant) {
-        plants[i].count++;
+        var hurvest = Math.round(Math.random() * 10);
+        if(hurvest > 4) {
+          hurvest = 3;
+        } else if(hurvest == 0) {
+          hurvest = 1;
+        }
+        plants[i].count = plants[i].count + hurvest;
       }
     }
     Garden_bed.digging(number_place);//digging
