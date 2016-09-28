@@ -71,6 +71,8 @@ var View = {
     ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
     //draw plate exit in game
     ctx.drawImage(Download_app.images_stock[1], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
+    //draw plate shop_exit_in_game_x
+    ctx.drawImage(Download_app.images_game_menu[6], shop_plate_x, shop_plate_y, shop_plate_size_x, shop_plate_size_y);
     //paint user money
     ctx.fillStyle = "black";
     ctx.font = shop_money_user_text;
@@ -78,6 +80,7 @@ var View = {
     //paint plants
     ctx.font = stock_count_text;
     var plants = Game_menu.array_plants;
+    //draw stock plants
     var j = 0;
     for(var i = 0; i < plants.length; i++) {
       if(plants[i].count > 0) {
@@ -85,6 +88,12 @@ var View = {
         ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
         j++;
       }
+    }
+    ctx.font = shop_price_text;
+    //draw shop plants and prices
+    for(var i = 0; i < plants.length; i++) {
+      ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
+      ctx.fillText("-" + plants[i].price + " бабосов" , Shop.positions[i].count_x, Shop.positions[i].count_y);
     }
   },
 

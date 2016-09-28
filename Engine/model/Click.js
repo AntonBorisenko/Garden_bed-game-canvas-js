@@ -127,6 +127,13 @@ var Click = {
     if((x > shop_exit_in_game_x && x < (shop_exit_in_game_x + shop_exit_in_game_size_x)) && (y > shop_exit_in_game_y && y < (shop_exit_in_game_y + shop_exit_in_game_size_y)) ) {
       Model.shop(false);
     }
+    //buy plant
+    var selection = Shop.positions;
+    for(var i = 0; i < Game_menu.array_plants.length; i++) {
+      if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
+        Model.buy_plant(i);
+      }
+    }
 
   },
 

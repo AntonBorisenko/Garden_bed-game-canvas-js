@@ -8,6 +8,7 @@ var Game_menu = {
   array_for_bag: [],
   array_for_stock: [],
   array_for_stock_count_plants: [],
+  array_for_shop: [],
   array_plants: [],
 
   make: function() {
@@ -24,6 +25,7 @@ var Game_menu = {
           Game_menu.create_array_plants();
           Game_menu.create_bag();
           Game_menu.create_stock();
+          Game_menu.create_shop();
         }
         //responce on the task
         Model.responce("game menu complete");
@@ -53,35 +55,37 @@ var Game_menu = {
 
 
   create_bag: function() {
-    //create positions plants
-    function create_position_menu_item(x, y, size_x, size_y, count_x, count_y) {
-      var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);//functions.js
-      //Add in array
-      Game_menu.array_for_bag.push(menu_icon);
-    }
-
-    create_position_menu_item(bag_first_position_icon_x, bag_first_position_icon_y, size_bag_icon, size_bag_icon, bag_count_first_x, bag_count_first_y);//first position
-    create_position_menu_item(bag_second_position_icon_x, bag_second_position_icon_y, size_bag_icon, size_bag_icon, bag_count_second_x, bag_count_second_y);//second position
-    create_position_menu_item(bag_third_position_icon_x, bag_third_position_icon_y, size_bag_icon, size_bag_icon, bag_count_third_x, bag_count_third_y);//third position
+    //create positions plants(menu)
+    Game_menu.create_position_menu_item(bag_first_position_icon_x, bag_first_position_icon_y, size_bag_icon, size_bag_icon, bag_count_first_x, bag_count_first_y, Game_menu.array_for_bag);//first position
+    Game_menu.create_position_menu_item(bag_second_position_icon_x, bag_second_position_icon_y, size_bag_icon, size_bag_icon, bag_count_second_x, bag_count_second_y, Game_menu.array_for_bag);//second position
+    Game_menu.create_position_menu_item(bag_third_position_icon_x, bag_third_position_icon_y, size_bag_icon, size_bag_icon, bag_count_third_x, bag_count_third_y, Game_menu.array_for_bag);//third position
 
     Bag.positions = Game_menu.array_for_bag;
-
   },
 
-  //create objects menu for stock
   create_stock: function() {
     //create positions plants
-    function create_position_menu_item(x, y, size_x, size_y, count_x, count_y) {
-      var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);//functions.js
-      //Add in array
-      Game_menu.array_for_stock.push(menu_icon);
-    }
-    create_position_menu_item(stock_first_position_icon_x, stock_first_position_icon_y, size_stock_icon, size_stock_icon, stock_count_first_x, stock_count_first_y);//first position
-    create_position_menu_item(stock_second_position_icon_x, stock_second_position_icon_y, size_stock_icon, size_stock_icon, stock_count_second_x, stock_count_second_y);//second position
-    create_position_menu_item(stock_third_position_icon_x, stock_third_position_icon_y, size_stock_icon, size_stock_icon, stock_count_third_x, stock_count_third_y);//third position
+    Game_menu.create_position_menu_item(stock_first_position_icon_x, stock_first_position_icon_y, size_stock_icon, size_stock_icon, stock_count_first_x, stock_count_first_y, Game_menu.array_for_stock);//first position
+    Game_menu.create_position_menu_item(stock_second_position_icon_x, stock_second_position_icon_y, size_stock_icon, size_stock_icon, stock_count_second_x, stock_count_second_y, Game_menu.array_for_stock);//second position
+    Game_menu.create_position_menu_item(stock_third_position_icon_x, stock_third_position_icon_y, size_stock_icon, size_stock_icon, stock_count_third_x, stock_count_third_y, Game_menu.array_for_stock);//third position
 
     Stock.positions = Game_menu.array_for_stock;
+  },
 
+  create_shop: function() {
+    //create positions plants
+    Game_menu.create_position_menu_item(shop_first_position_icon_x, shop_first_position_icon_y, size_shop_icon, size_shop_icon, shop_first_price_x, shop_first_price_y, Game_menu.array_for_shop);//first position
+    Game_menu.create_position_menu_item(shop_second_position_icon_x, shop_second_position_icon_y, size_shop_icon, size_shop_icon, shop_second_price_x, shop_second_price_y, Game_menu.array_for_shop);//second position
+    Game_menu.create_position_menu_item(shop_third_position_icon_x, shop_third_position_icon_y, size_shop_icon, size_shop_icon, shop_third_price_x, shop_third_price_y, Game_menu.array_for_shop);//third position
+
+    Shop.positions = Game_menu.array_for_shop;
+  },
+
+  //create positions plants(menu)
+  create_position_menu_item: function(x, y, size_x, size_y, count_x, count_y, array_for_push) {
+    var menu_icon = new Create_object_position(x, y, size_x, size_y, count_x, count_y);//functions.js
+    //Add in array
+    array_for_push.push(menu_icon);
   },
 
   click_on_the_item: function(item) {

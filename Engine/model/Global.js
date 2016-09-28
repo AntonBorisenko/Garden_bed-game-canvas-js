@@ -205,7 +205,35 @@ var Global = {
     var shop_money_user_size_px = canvas.width/50;
     window.shop_money_user_text = "italic " + shop_money_user_size_px + "px Arial";
     window.shop_money_user_x = garden_padding_left*4;
-    window.shop_money_user_y = (garden_padding_top*5) + shop_size_y;
+    window.shop_money_user_y = (garden_padding_top*5) + plate_stock_size_y;
+    //shop plate
+    window.shop_plate_size_x = canvas.width/6;
+    window.shop_plate_size_y = shop_plate_size_x/2;
+    window.shop_plate_x = canvas.width - canvas.width/1.7;
+    window.shop_plate_y = garden_padding_top*2;
+    //define proportion and location shop items
+    var distance_icon = canvas.width/80;
+    window.size_shop_icon = canvas.height/13;
+    //size_x and size_y
+    window.shop_first_position_icon_size_x = window.shop_first_position_icon_size_y =
+    window.shop_second_position_icon_size_x = window.shop_second_position_icon_size_y =
+    window.shop_third_position_icon_size_x = window.shop_third_position_icon_size_y = size_shop_icon;
+    //x
+    window.shop_first_position_icon_x = window.shop_second_position_icon_x =
+    window.shop_third_position_icon_x = shop_plate_x + distance_icon;
+    //y
+    window.shop_first_position_icon_y = shop_plate_size_y + (distance_icon*3);
+    window.shop_second_position_icon_y = shop_first_position_icon_y + size_shop_icon + distance_icon;
+    window.shop_third_position_icon_y = shop_second_position_icon_y + size_shop_icon + distance_icon;
+    //location price for position
+    var shop_price_size_px = canvas.width/60;
+    window.shop_price_text = "italic " + shop_price_size_px + "px Arial";
+    window.shop_first_price_x = window.shop_second_price_x =
+    window.shop_third_price_x = shop_first_position_icon_x + size_shop_icon + distance_icon;
+    window.shop_first_price_y = shop_first_position_icon_y + (size_shop_icon/1.5);
+    window.shop_second_price_y = shop_second_position_icon_y + (size_shop_icon/1.5);
+    window.shop_third_price_y = shop_third_position_icon_y + (size_shop_icon/1.5);
+
   },
 
   define_prototype_plants: function() {

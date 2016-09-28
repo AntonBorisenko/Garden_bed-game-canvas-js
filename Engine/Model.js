@@ -113,6 +113,16 @@ var Model = {
     }
   },
 
+  buy_plant: function(i) {
+    if((User.money = User.money - Game_menu.array_plants[i].price) >= 0 ) {
+      //User.money = User.money - Game_menu.array_plants[i].price;
+      Game_menu.array_plants[i].count++;
+    } else {
+      User.money = User.money + Game_menu.array_plants[i].price;
+      alert("Бабосов-то нема");
+    }
+  },
+
   //planting plant
   planting: function(number_place) {
     window.planting = false;
