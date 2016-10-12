@@ -43,7 +43,7 @@ var View = {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(Stock.x, Stock.y, Stock.size_x, Stock.size_y);
     //draw plate stock
-    ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
+    ctx.drawImage(Download_app.images_game_menu[5], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
     //draw plate exit in game
     ctx.drawImage(Download_app.images_stock[1], stock_exit_in_game_x, stock_exit_in_game_y, stock_exit_in_game_size_x, stock_exit_in_game_size_y);
     //paint user money
@@ -56,7 +56,7 @@ var View = {
     var j = 0;
     for(var i = 0; i < plants.length; i++) {
       if(plants[i].count > 0) {
-        ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
+        ctx.drawImage(Download_app.images_plants[plants[i].img_number], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
         ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
         j++;
       }
@@ -68,7 +68,7 @@ var View = {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(Shop.x, Shop.y, Shop.size_x, Shop.size_y);
     //draw plate stock
-    ctx.drawImage(Download_app.images_stock[0], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
+    ctx.drawImage(Download_app.images_game_menu[5], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
     //draw plate exit in game
     ctx.drawImage(Download_app.images_stock[1], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
     //draw plate shop_exit_in_game_x
@@ -84,7 +84,7 @@ var View = {
     var j = 0;
     for(var i = 0; i < plants.length; i++) {
       if(plants[i].count > 0) {
-        ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
+        ctx.drawImage(Download_app.images_plants[plants[i].img_number], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
         ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
         j++;
       }
@@ -92,7 +92,7 @@ var View = {
     ctx.font = shop_price_text;
     //draw shop plants and prices
     for(var i = 0; i < plants.length; i++) {
-      ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
+      ctx.drawImage(Download_app.images_plants[plants[i].img_number], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
       ctx.fillText("-" + plants[i].price + " бабосов" , Shop.positions[i].count_x, Shop.positions[i].count_y);
     }
   },
@@ -162,7 +162,7 @@ var View = {
     var j = 0;
     for(var i = 0; i < plants.length; i++) {
       if(plants[i].count > 0) {
-        ctx.drawImage(Download_app.images_plants[plants[i].id_plant], Bag.positions[j].x, Bag.positions[j].y, Bag.positions[j].size_x, Bag.positions[j].size_y);
+        ctx.drawImage(Download_app.images_plants[plants[i].img_number], Bag.positions[j].x, Bag.positions[j].y, Bag.positions[j].size_x, Bag.positions[j].size_y);
         ctx.fillText(plants[i].count, Bag.positions[j].count_x, Bag.positions[j].count_y);
         j++;
       }

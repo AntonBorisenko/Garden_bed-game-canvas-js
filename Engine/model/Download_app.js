@@ -75,7 +75,9 @@ var images_for_game =    ["img/Playing field/fone.jpg","img/Plants/ded.png","img
 
 
 //an array with plant pictures
-var img_plants_for_download =     ["img/Plants/ded.png", "img/Plants/potatoes.png", "img/Plants/tomato.png",
+var img_plants_for_download =     ["img/Plants/ded.png",
+                                   "img/Plants/potatoes/potatoes.png", "img/Plants/potatoes/potatoes_2.png", "img/Plants/potatoes/potatoes_3.png",
+                                   "img/Plants/tomato/tomato.png", "img/Plants/tomato/tomato_2.png", "img/Plants/tomato/tomato_3.png",
                                    "img/Plants/cabbage/cabbage.png", "img/Plants/cabbage/cabbage_2.png", "img/Plants/cabbage/cabbage_3.png"];
 
 

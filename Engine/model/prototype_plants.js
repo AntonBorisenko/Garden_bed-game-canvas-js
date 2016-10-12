@@ -59,6 +59,24 @@ function Potatoes(x,y,place,grown) {
 }
 Potatoes.prototype = new Plant;
 Potatoes.prototype.constructor = Potatoes;
+Potatoes.prototype.watering = function(bailer) {
+  //watering
+  if(bailer) {
+    this.water = this.water + 100000;
+  }
+  //drying plant
+  this.water = this.water - View.interval;
+  if(this.water > 5000) {
+      this.img_number = 1;
+  } else if (this.water < 3000 && this.water > 1500) {
+      this.img_number = 2;
+  } else if(this.water < 1500 && this.water > 0) {
+      this.img_number = 3;
+  } else if(this.water < 0) {
+      this.status = "ded";
+  }
+
+}
 
 
 
@@ -67,7 +85,7 @@ function Tomato(x,y,place,grown) {
   var id = 2;
   var name = "tomato";
   var grown = 10000;
-  var img_number = 2;
+  var img_number = 4;
   var price = tomato_price;
   var water = 6000;
   var x_cor = x;
@@ -76,6 +94,24 @@ function Tomato(x,y,place,grown) {
 }
 Tomato.prototype = new Plant;
 Tomato.prototype.constructor = Tomato;
+Tomato.prototype.watering = function(bailer) {
+  //watering
+  if(bailer) {
+    this.water = this.water + 100000;
+  }
+  //drying plant
+  this.water = this.water - View.interval;
+  if(this.water > 5000) {
+      this.img_number = 4;
+  } else if (this.water < 3000 && this.water > 1500) {
+      this.img_number = 5;
+  } else if(this.water < 1500 && this.water > 0) {
+      this.img_number = 6;
+  } else if(this.water < 0) {
+      this.status = "ded";
+  }
+
+}
 
 
 
@@ -84,7 +120,7 @@ function Cabbage(x,y,place,grown) {
   var id = 3;
   var name = "cabbage";
   var grown = 12000;
-  var img_number = 3;
+  var img_number = 7;
   var price = cabbage_price;
   var water = 7000;
   var x_cor = x;
@@ -101,11 +137,11 @@ Cabbage.prototype.watering = function(bailer) {
   //drying plant
   this.water = this.water - View.interval;
   if(this.water > 5000) {
-      this.img_number = 3;
+      this.img_number = 7;
   } else if (this.water < 3000 && this.water > 1500) {
-      this.img_number = 4;
+      this.img_number = 8;
   } else if(this.water < 1500 && this.water > 0) {
-      this.img_number = 5;
+      this.img_number = 9;
   } else if(this.water < 0) {
       this.status = "ded";
   }

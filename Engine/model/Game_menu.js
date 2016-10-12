@@ -38,19 +38,17 @@ var Game_menu = {
     create_menu_item(Download_app.images_game_menu[4], game_menu_icon_bag_x, game_menu_icon_bag_y, game_menu_icon_bag_size_x, game_menu_icon_bag_size_y, "Bag");//bag
     create_menu_item(Download_app.images_game_menu[5], game_menu_icon_stock_x, game_menu_icon_stock_y, game_menu_icon_stock_size_x, game_menu_icon_stock_size_y, "Stock");//stock
     create_menu_item(Download_app.images_game_menu[6], game_menu_icon_shop_x, game_menu_icon_shop_y, game_menu_icon_shop_size_x, game_menu_icon_shop_size_y, "Shop");//shop
-
   },
 
   create_array_plants: function() {
     //array plants for stock and bag
-    function create_plants(Obj_name, id_plant, count, price) {
-      var plant = new Create_plant(Obj_name, id_plant, count, price);//functions.js
+    function create_plants(Obj_name, id_plant, count, price, img_number) {
+      var plant = new Create_plant(Obj_name, id_plant, count, price, img_number);//functions.js
       Game_menu.array_plants.push(plant);
     }
-    create_plants(Potatoes, 1, 4, potatoes_price);
-    create_plants(Tomato, 2, 2, tomato_price);
-    create_plants(Cabbage, 3, 6, cabbage_price);
-
+    create_plants(Potatoes, 1, 4, potatoes_price, 1);
+    create_plants(Tomato, 2, 2, tomato_price, 4);
+    create_plants(Cabbage, 3, 6, cabbage_price, 7);
   },
 
 
