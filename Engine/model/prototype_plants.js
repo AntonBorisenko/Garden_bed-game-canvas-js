@@ -1,12 +1,13 @@
 "use strict";
 //PROTOTYPE PLANTS
-function Plant(id, name, img_number, x_cor, y_cor, place, water, grown, price) {
+function Plant(id, name, img_number, x_cor, y_cor, place, water, grown, price, experience) {
   var plant_size = window.plant_size;
   this.id = id;
   this.name = name;
   this.status = "grow";
   this.img_number = img_number;
   this.price = price;
+  this.experience = experience;
   this.x = x_cor;
   this.y = y_cor;
   this.size = plant_size;
@@ -52,10 +53,11 @@ function Potatoes(x,y,place,grown) {
   var grown = 14000;
   var img_number = 1;
   var price = potatoes_price;
+  var experience = potatoes_experience;
   var water = 8000;
   var x_cor = x;
   var y_cor = y;
-  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price);
+  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price, experience);
 }
 Potatoes.prototype = new Plant;
 Potatoes.prototype.constructor = Potatoes;
@@ -87,10 +89,11 @@ function Tomato(x,y,place,grown) {
   var grown = 10000;
   var img_number = 4;
   var price = tomato_price;
+  var experience = tomato_experience;
   var water = 6000;
   var x_cor = x;
   var y_cor = y;
-  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price);
+  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price, experience);
 }
 Tomato.prototype = new Plant;
 Tomato.prototype.constructor = Tomato;
@@ -122,10 +125,11 @@ function Cabbage(x,y,place,grown) {
   var grown = 12000;
   var img_number = 7;
   var price = cabbage_price;
+  var experience = cabbage_experience;
   var water = 7000;
   var x_cor = x;
   var y_cor = y;
-  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price);
+  Plant.call(this, id, name, img_number, x_cor, y_cor, place, water, grown, price, experience);
 }
 Cabbage.prototype = new Plant;
 Cabbage.prototype.constructor = Cabbage;

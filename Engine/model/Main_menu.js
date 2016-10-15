@@ -23,9 +23,9 @@ var Main_menu = {
     }
     //Create main menu
     create_menu_item(Download_app.images_main_menu[0], main_menu_item_x, main_menu_on_garden_bed_y, "on_garden_bed");
-    create_menu_item(Download_app.images_main_menu[1], main_menu_item_x, main_menu_help_y, "help");
-    create_menu_item(Download_app.images_main_menu[2], main_menu_item_x, main_menu_new_game_bed_y, "new_game");
-    create_menu_item(Download_app.images_main_menu[3], main_menu_item_x, main_menu_exit_bed_y, "exit");
+    create_menu_item(Download_app.images_main_menu[1], main_menu_help_x, main_menu_help_y, "help");
+    create_menu_item(Download_app.images_main_menu[2], main_menu_new_game_x, main_menu_new_game_y, "new_game");
+    create_menu_item(Download_app.images_main_menu[3], main_menu_exit_x, main_menu_exit_y, "exit");
   },
 
   //Prototype main menu items
@@ -76,7 +76,11 @@ var Help = {
 //maim menu item - "New game"
 var New_game = {
   click_on_the_item: function() {
-    alert("new game!");
+    var decision = confirm("Вы уверены что хотите начать новую игру?");
+    if(decision == true) {
+      Model.reset_all();
+      On_garden_bed.click_on_the_item();
+    }
   }
 }
 

@@ -42,13 +42,13 @@ var Game_menu = {
 
   create_array_plants: function() {
     //array plants for stock and bag
-    function create_plants(Obj_name, id_plant, count, price, img_number) {
-      var plant = new Create_plant(Obj_name, id_plant, count, price, img_number);//functions.js
+    function create_plants(Obj_name, id_plant, count, price, experience, img_number) {
+      var plant = new Create_plant(Obj_name, id_plant, count, price, experience, img_number);//functions.js
       Game_menu.array_plants.push(plant);
     }
-    create_plants(Potatoes, 1, 4, potatoes_price, 1);
-    create_plants(Tomato, 2, 2, tomato_price, 4);
-    create_plants(Cabbage, 3, 6, cabbage_price, 7);
+    create_plants(Potatoes, 1, 4, potatoes_price, potatoes_experience, 1);
+    create_plants(Tomato, 2, 2, tomato_price, tomato_experience, 4);
+    create_plants(Cabbage, 3, 6, cabbage_price, cabbage_experience, 7);
   },
 
 

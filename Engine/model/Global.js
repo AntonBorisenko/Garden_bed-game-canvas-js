@@ -30,6 +30,9 @@ var Global = {
     window.planting = false;              //the state of the planting
     window.plant_for_planting = false;    //Choose plants for planting
     window.stock_selection = false;
+    window.sell_now = false;              //effects
+    window.buy_now = false;              //effects
+    window.hurvest_experience = false;    //effects
   },
 
   define_main_menu: function(canvas) {
@@ -42,10 +45,13 @@ var Global = {
     window.main_menu_item_size_y = canvas.height/7;
     window.main_menu_item_distance = canvas.height/12;
     window.main_menu_item_x = canvas.width/3;
-    window.main_menu_on_garden_bed_y = main_menu_item_distance;
-    window.main_menu_help_y = main_menu_item_size_y+(main_menu_item_distance*2);
-    window.main_menu_new_game_bed_y = (main_menu_item_size_y*2) + (main_menu_item_distance*3);
-    window.main_menu_exit_bed_y = (main_menu_item_size_y*3) + (main_menu_item_distance*4);
+    window.main_menu_help_x = canvas.width/2.9;
+    window.main_menu_new_game_x = canvas.width/2.8;
+    window.main_menu_exit_x = canvas.width/2.8;
+    window.main_menu_on_garden_bed_y = main_menu_item_distance*1.5;
+    window.main_menu_help_y = main_menu_item_size_y+(main_menu_item_distance*1.8);
+    window.main_menu_new_game_y = (main_menu_item_size_y*2) + (main_menu_item_distance*2.1);
+    window.main_menu_exit_y = (main_menu_item_size_y*3) + (main_menu_item_distance*2.4);
   },
 
   define_garden_bed: function(canvas) {
@@ -59,6 +65,16 @@ var Global = {
     window.money_user_text = "italic " + money_user_size_px + "px Arial";
     window.money_user_x = garden_padding_left*2;
     window.money_user_y = garden_padding_top*3.5;
+    //level User
+    window.level_user_size_px = money_user_size_px;
+    window.level_user_text = "italic " + level_user_size_px + "px Arial";
+    window.level_user_x = money_user_x + canvas.width/6.2;
+    window.level_user_y = money_user_y;
+    //experience User
+    window.experience_user_size_px = money_user_size_px;
+    window.experience_user_text = "italic " + experience_user_size_px + "px Arial";
+    window.experience_user_x = money_user_x + canvas.width/3.16;
+    window.experience_user_y = money_user_y;
     //hurvest_img_size
     window.hurvest_img_size = canvas.width/22.5;
     //garden bed places for planting and SIZE PLANT
@@ -238,8 +254,11 @@ var Global = {
 
   define_prototype_plants: function() {
     window.potatoes_price = 6;
+    window.potatoes_experience = 12;
     window.tomato_price = 10;
+    window.tomato_experience = 18;
     window.cabbage_price = 8;
+    window.cabbage_experience = 17;
   }
 
 }

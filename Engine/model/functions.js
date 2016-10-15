@@ -54,10 +54,11 @@ function Create_object_position(x, y, size_x, size_y, count_x, count_y) {
   this.count_y = count_y;
 }
 
-function Create_plant(Obj_name, id_plant, count, price, img_number) {
+function Create_plant(Obj_name, id_plant, count, price, experience, img_number) {
   this.Obj_name = Obj_name;
   this.id_plant = id_plant;
   this.count = count;
   this.price = price;
+  this.experience = experience;
   this.img_number = img_number;
 }

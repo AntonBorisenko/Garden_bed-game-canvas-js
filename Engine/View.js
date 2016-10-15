@@ -31,8 +31,7 @@ var View = {
   //PAINT MAIN MENU
   draw_main_menu: function () {
     //Draw fone
-    ctx.fillStyle = "lightgreen";
-    ctx.fillRect(main_menu_fon_x,main_menu_fon_y,main_menu_fon_size_x,main_menu_fon_size_y);
+    ctx.drawImage(Download_app.images_main_menu[4], main_menu_fon_x,main_menu_fon_y,main_menu_fon_size_x,main_menu_fon_size_y);
     for(var i = 0; i < 4;/*then change to the length of the array*/i++) {
       ctx.drawImage(Main_menu.array_menu[i].img, Main_menu.array_menu[i].x, Main_menu.array_menu[i].y, Main_menu.array_menu[i].size_x, Main_menu.array_menu[i].size_y);
     }
@@ -49,8 +48,13 @@ var View = {
     //paint user money
     ctx.fillStyle = "black";
     ctx.font = stock_money_user_text;
+    if(window.sell_now == true) {
+      ctx.fillStyle = "green";
+      window.sell_now = false;
+    }
     ctx.fillText("Бабосы: " + User.money, stock_money_user_x, stock_money_user_y);
     //paint plants
+    ctx.fillStyle = "black";
     ctx.font = stock_count_text;
     var plants = Game_menu.array_plants;
     var j = 0;
@@ -76,8 +80,13 @@ var View = {
     //paint user money
     ctx.fillStyle = "black";
     ctx.font = shop_money_user_text;
+    if(window.buy_now == true) {
+      ctx.fillStyle = "red";
+      window.buy_now = false;
+    }
     ctx.fillText("Бабосы: " + User.money, shop_money_user_x, shop_money_user_y);
     //paint plants
+    ctx.fillStyle = "black";
     ctx.font = stock_count_text;
     var plants = Game_menu.array_plants;
     //draw stock plants
@@ -111,6 +120,20 @@ var View = {
     ctx.fillStyle = "yellow";
     ctx.font = money_user_text;
     ctx.fillText("Бабосы: " + User.money, money_user_x, money_user_y);
+    //paint user level
+    if(User.level_up_now == true) {
+      ctx.fillStyle = "green";
+      User.level_up_now = false;
+    }
+    ctx.font = level_user_text;
+    ctx.fillText("Уровень: " + User.level, level_user_x, level_user_y);
+    //paint user experience
+    if(window.hurvest_experience == true) {
+      ctx.fillStyle = "green";
+      window.hurvest_experience = false;
+    }
+    ctx.font = experience_user_text;
+    ctx.fillText("Опыт: " + User.experience, experience_user_x, experience_user_y);
     //if bag == true
     if(bag)  View.paintBag();
     //if planting == true

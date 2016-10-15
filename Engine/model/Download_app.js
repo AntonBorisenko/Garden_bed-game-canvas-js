@@ -83,7 +83,7 @@ var img_plants_for_download =     ["img/Plants/ded.png",
 
 //an array with downloaded main menu pictures
 var img_main_menu_for_download = ["img/Main menu/on_garden_bed.png","img/Main menu/help.png",
-                                  "img/Main menu/new_game.png","img/Main menu/exit.png"];
+                                  "img/Main menu/new_game.png","img/Main menu/exit.png", "img/Main menu/main_fone.png"];
 
 
 //an array with downloaded game menu pictures

@@ -45,6 +45,17 @@ var Model = {
     Download_app.downloading();
   },
 
+  //start new game
+  reset_all: function() {
+    User.level = 1;
+    User.money = 40;
+    User.experience = 0;
+    Garden_bed.plants = [];
+    Garden_bed.images_for_hurvest = [];
+    Game_menu.array_plants = [];
+    Garden_bed.init();
+  },
+
   //creating main menu
   create_main_menu: function() {
     Main_menu.make();
@@ -71,12 +82,6 @@ var Model = {
   cansel_use_item: function() {
     document.body.style.cursor = "url('img/Icons/cursor.png'), auto";
     window.location_now = "game";
-  },
-
-  watering: function(plant) {
-    if(plant.status == "grow") {
-      plant.watering("bailer");//watering
-    }
   },
 
   //if the open bag for plant selection
@@ -117,10 +122,16 @@ var Model = {
     if((User.money = User.money - Game_menu.array_plants[i].price) >= 0 ) {
       //User.money = User.money - Game_menu.array_plants[i].price;
       Game_menu.array_plants[i].count++;
+      window.buy_now = true;   //effects
     } else {
       User.money = User.money + Game_menu.array_plants[i].price;
       alert("Бабосов-то нема");
     }
+  },
+
+  sell_plant: function(price) {
+    User.money = User.money + price;
+    window.sell_now = true;   //effects
   },
 
   //planting plant
@@ -140,6 +151,12 @@ var Model = {
     Garden_bed.plants.splice(number_plant,1);
   },
 
+  watering: function(plant) {
+    if(plant.status == "grow") {
+      plant.watering("bailer");//watering
+    }
+  },
+
   plant_has_groun: function(number_place,img_x,img_y,img_size) {
     //create object images hurvest
     var harvest_img = {
@@ -156,6 +173,11 @@ var Model = {
     var plants = Game_menu.array_plants;
     for(var i = 0; i < plants.length; i++ ) {
       if(plants[i].id_plant == id_plant) {
+        if(plants[i].experience > 0) {
+          User.experience += plants[i].experience;
+          window.hurvest_experience = true; //effects
+          User.level_up();
+        }
         var hurvest = Math.round(Math.random() * 10);
         if(hurvest > 4) {
           hurvest = 3;
@@ -169,10 +191,6 @@ var Model = {
     //and clear arrays
     Garden_bed.plants.splice(number_plant,1);
     Garden_bed.images_for_hurvest.splice(number_image_hurvest,1);
-  },
-
-  sell_plant: function(price) {
-    User.money = User.money + price;
   }
 
 }
