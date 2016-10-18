@@ -217,6 +217,21 @@ var Global = {
     window.shop_exit_in_game_size_y = shop_exit_in_game_size_x/2;
     window.shop_exit_in_game_x = canvas.width - canvas.width/5;
     window.shop_exit_in_game_y = garden_padding_top*2;
+    //MAIN MENU
+    var main_distance_icon = canvas.height/16;
+    //size main menu icons
+    window.shop_icons_size_x = canvas.width/3;
+    window.shop_icons_size_y = canvas.height/13;
+    //x main menu icons
+    window.all_for_billets_x = window.all_for_garden_x =
+    window.fertilizers_x = window.hurvest_and_seed_x = canvas.width/20;
+    //y main menu icons
+    window.all_for_billets_y = main_distance_icon;
+    window.all_for_garden_y = main_distance_icon*3;
+    window.fertilizers_y = main_distance_icon*5;
+    window.hurvest_and_seed_y = main_distance_icon*7;
+
+    //HEVEST AND SEED
     //money User
     var shop_money_user_size_px = canvas.width/50;
     window.shop_money_user_text = "italic " + shop_money_user_size_px + "px Arial";

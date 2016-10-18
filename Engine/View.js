@@ -43,8 +43,10 @@ var View = {
     ctx.fillRect(Stock.x, Stock.y, Stock.size_x, Stock.size_y);
     //draw plate stock
     ctx.drawImage(Download_app.images_game_menu[5], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
+    //draw plate shop
+    ctx.drawImage(Download_app.images_game_menu[6], shop_plate_x, shop_plate_y, shop_plate_size_x, shop_plate_size_y);
     //draw plate exit in game
-    ctx.drawImage(Download_app.images_stock[1], stock_exit_in_game_x, stock_exit_in_game_y, stock_exit_in_game_size_x, stock_exit_in_game_size_y);
+    ctx.drawImage(Download_app.images_shop[4], stock_exit_in_game_x, stock_exit_in_game_y, stock_exit_in_game_size_x, stock_exit_in_game_size_y);
     //paint user money
     ctx.fillStyle = "black";
     ctx.font = stock_money_user_text;
@@ -71,38 +73,45 @@ var View = {
   paintShop: function() {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(Shop.x, Shop.y, Shop.size_x, Shop.size_y);
-    //draw plate stock
-    ctx.drawImage(Download_app.images_game_menu[5], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
     //draw plate exit in game
-    ctx.drawImage(Download_app.images_stock[1], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
-    //draw plate shop_exit_in_game_x
-    ctx.drawImage(Download_app.images_game_menu[6], shop_plate_x, shop_plate_y, shop_plate_size_x, shop_plate_size_y);
-    //paint user money
-    ctx.fillStyle = "black";
-    ctx.font = shop_money_user_text;
-    if(window.buy_now == true) {
-      ctx.fillStyle = "red";
-      window.buy_now = false;
-    }
-    ctx.fillText("Бабосы: " + User.money, shop_money_user_x, shop_money_user_y);
-    //paint plants
-    ctx.fillStyle = "black";
-    ctx.font = stock_count_text;
-    var plants = Game_menu.array_plants;
-    //draw stock plants
-    var j = 0;
-    for(var i = 0; i < plants.length; i++) {
-      if(plants[i].count > 0) {
-        ctx.drawImage(Download_app.images_plants[plants[i].img_number], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
-        ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
-        j++;
+    ctx.drawImage(Download_app.images_shop[4], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
+    if(window.shop == "main") {
+      ctx.drawImage(Download_app.images_shop[0], all_for_billets_x, all_for_billets_y, shop_icons_size_x, shop_icons_size_y); //all_for_billets
+      ctx.drawImage(Download_app.images_shop[1], all_for_garden_x, all_for_garden_y, shop_icons_size_x, shop_icons_size_y); //all_for_garden
+      ctx.drawImage(Download_app.images_shop[2], fertilizers_x, fertilizers_y, shop_icons_size_x, shop_icons_size_y); //fertilizers
+      ctx.drawImage(Download_app.images_shop[3], hurvest_and_seed_x, hurvest_and_seed_y, shop_icons_size_x, shop_icons_size_y); //hurvest_and_seed
+    } else if(window.shop == "hurvest and seed") {
+      //draw plate stock
+      ctx.drawImage(Download_app.images_game_menu[5], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
+      //draw plate shop
+      ctx.drawImage(Download_app.images_game_menu[6], shop_plate_x, shop_plate_y, shop_plate_size_x, shop_plate_size_y);
+      //paint user money
+      ctx.fillStyle = "black";
+      ctx.font = shop_money_user_text;
+      if(window.buy_now == true) {
+        ctx.fillStyle = "red";
+        window.buy_now = false;
       }
-    }
-    ctx.font = shop_price_text;
-    //draw shop plants and prices
-    for(var i = 0; i < plants.length; i++) {
-      ctx.drawImage(Download_app.images_plants[plants[i].img_number], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
-      ctx.fillText("-" + plants[i].price + " бабосов" , Shop.positions[i].count_x, Shop.positions[i].count_y);
+      ctx.fillText("Бабосы: " + User.money, shop_money_user_x, shop_money_user_y);
+      //paint plants
+      ctx.fillStyle = "black";
+      ctx.font = stock_count_text;
+      var plants = Game_menu.array_plants;
+      //draw stock plants
+      var j = 0;
+      for(var i = 0; i < plants.length; i++) {
+        if(plants[i].count > 0) {
+          ctx.drawImage(Download_app.images_plants[plants[i].img_number], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
+          ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
+          j++;
+        }
+      }
+      ctx.font = shop_price_text;
+      //draw shop plants and prices
+      for(var i = 0; i < plants.length; i++) {
+        ctx.drawImage(Download_app.images_plants[plants[i].img_number], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
+        ctx.fillText("-" + plants[i].price + " бабосов" , Shop.positions[i].count_x, Shop.positions[i].count_y);
+      }
     }
   },
 

@@ -105,6 +105,9 @@ var Model = {
     if(selection === 0 || selection > 0) {
       Game_menu.array_plants[selection].count--;
       Model.sell_plant(Game_menu.array_plants[selection].price);
+    } else if(selection == "shop") {
+      window.location_now = "shop";
+      window.shop = "hurvest and seed";
     } else {
       window.stock = false;
       window.location_now = "game";
@@ -115,6 +118,10 @@ var Model = {
     if(status === false) {
       window.shop = false;
       window.location_now = "game";
+    } else if(status == "stock") {
+      Stock.click_on_the_icon();
+    } else if(status == "hurvest and seed") {
+      window.shop = "hurvest and seed";
     }
   },
 

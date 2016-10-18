@@ -12,7 +12,7 @@ var Download_app = {
   //an array with downloaded icons plants
   images_plants_icons: [],
   //an array with downloaded images for stock
-  images_stock: [],
+  images_shop: [],
 
   //Downloading images
   downloading: function() {
@@ -51,7 +51,7 @@ var Download_app = {
       } else if(number == 5) {
           load_images(img_plants_icons_for_download, Download_app.images_plants_icons, number);
       } else if(number == 6) {
-          load_images(img_for_stock, Download_app.images_stock, number);
+          load_images(img_for_shop, Download_app.images_shop, number);
       } else {
         //responce on the task
         Model.responce("download complete");
@@ -96,4 +96,6 @@ var img_game_menu_for_download = ["img/Game menu/exit_in_menu.png", "img/Game me
 var img_plants_icons_for_download = ["img/Plants/ded.png","img/Plants icons/potatoes.jpg", "img/Plants icons/tomato.png",
                                      "img/Plants icons/cabbage.png"];
 
-var img_for_stock = ["img/Stock/plate_stock.jpg", "img/Stock/exit_in_game.jpg"];
+var img_for_shop = ["img/Shop/all_for_billets.png", "img/Shop/all_for_garden.png",
+                    "img/Shop/fertilizers.png", "img/Shop/hurvest_and_seed.png",
+                    "img/Shop/exit_in_game.jpg"];

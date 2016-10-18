@@ -209,7 +209,7 @@ var Shop = {
     if(!this.x||!this.y||!this.size_x||this.size_y) {
       Shop.init_proportions();
     }
-    window.shop = true;
+    window.shop = "main";
     window.location_now = "shop";
   },
 

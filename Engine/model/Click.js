@@ -108,7 +108,11 @@ var Click = {
     if((x > stock_exit_in_game_x && x < (stock_exit_in_game_x + stock_exit_in_game_size_x)) && (y > stock_exit_in_game_y && y < (stock_exit_in_game_y + stock_exit_in_game_size_y)) ) {
       Model.stock(false);
     }
-   //selection plants
+    //in shop
+    if((x > shop_plate_x && x < (shop_plate_x + shop_plate_size_x)) && (y > shop_plate_y && y < (shop_plate_y + shop_plate_size_y)) ) {
+      Model.stock("shop");
+    }
+    //selection plants
     var selection = Stock.positions;
     var j = 0;
     for(var i = 0; i < Game_menu.array_plants.length; i++) {
@@ -127,14 +131,25 @@ var Click = {
     if((x > shop_exit_in_game_x && x < (shop_exit_in_game_x + shop_exit_in_game_size_x)) && (y > shop_exit_in_game_y && y < (shop_exit_in_game_y + shop_exit_in_game_size_y)) ) {
       Model.shop(false);
     }
-    //buy plant
-    var selection = Shop.positions;
-    for(var i = 0; i < Game_menu.array_plants.length; i++) {
-      if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
-        Model.buy_plant(i);
+    //shop, main menu
+    if(window.shop == "main") {
+      if((x > hurvest_and_seed_x && x < (hurvest_and_seed_x + shop_icons_size_x)) && (y > hurvest_and_seed_y && y < (hurvest_and_seed_y + shop_icons_size_y)) ) {
+        Model.shop("hurvest and seed");
+      }
+    //shop, hurvest and seed
+    } else if(window.shop == "hurvest and seed") {
+      //in stock
+      if((x > plate_stock_x && x < (plate_stock_x + plate_stock_size_x)) && (y > plate_stock_y && y < (plate_stock_y + plate_stock_size_y)) ) {
+        Model.shop("stock");
+      }
+      //buy plant
+      var selection = Shop.positions;
+      for(var i = 0; i < Game_menu.array_plants.length; i++) {
+        if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
+          Model.buy_plant(i);
+        }
       }
     }
-
   },
 
   //Planting plant in the place
