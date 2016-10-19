@@ -33,6 +33,7 @@ var Global = {
     window.sell_now = false;              //effects
     window.buy_now = false;              //effects
     window.hurvest_experience = false;    //effects
+    window.rain = true; //effects
   },
 
   define_main_menu: function(canvas) {

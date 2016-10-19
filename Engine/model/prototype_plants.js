@@ -61,10 +61,13 @@ function Potatoes(x,y,place,grown) {
 }
 Potatoes.prototype = new Plant;
 Potatoes.prototype.constructor = Potatoes;
-Potatoes.prototype.watering = function(bailer) {
+Potatoes.prototype.watering = function(status) {
   //watering
-  if(bailer) {
+  if(status == "bailer") {
     this.water = this.water + 100000;
+  }
+  if(status == "rain") {
+    this.water = 100000;
   }
   //drying plant
   this.water = this.water - View.interval;
@@ -97,10 +100,13 @@ function Tomato(x,y,place,grown) {
 }
 Tomato.prototype = new Plant;
 Tomato.prototype.constructor = Tomato;
-Tomato.prototype.watering = function(bailer) {
+Tomato.prototype.watering = function(status) {
   //watering
-  if(bailer) {
+  if(status == "bailer") {
     this.water = this.water + 100000;
+  }
+  if(status == "rain") {
+    this.water = 100000;
   }
   //drying plant
   this.water = this.water - View.interval;
@@ -133,10 +139,13 @@ function Cabbage(x,y,place,grown) {
 }
 Cabbage.prototype = new Plant;
 Cabbage.prototype.constructor = Cabbage;
-Cabbage.prototype.watering = function(bailer) {
+Cabbage.prototype.watering = function(status) {
   //watering
-  if(bailer) {
+  if(status == "bailer") {
     this.water = this.water + 100000;
+  }
+  if(status == "rain") {
+    this.water = 100000;
   }
   //drying plant
   this.water = this.water - View.interval;

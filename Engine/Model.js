@@ -54,6 +54,7 @@ var Model = {
     Garden_bed.images_for_hurvest = [];
     Game_menu.array_plants = [];
     Garden_bed.init();
+    Game_events.reset_all();
   },
 
   //creating main menu

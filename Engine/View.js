@@ -27,7 +27,7 @@ var View = {
         View.paintShop();
     } else {
         View.draw_game();
-        View.paint_rain();
+        Game_events.rain(); //the expected rain
     }
   },
 
@@ -144,10 +144,10 @@ var View = {
     }
     ctx.font = experience_user_text;
     ctx.fillText("Опыт: " + User.experience, experience_user_x, experience_user_y);
-    //if bag == true
-    if(bag)  View.paintBag();
-    //if planting == true
-    if(planting)  View.paint_places_for_plant();
+
+    if(bag) View.paintBag(); //if window.bag == true
+    if(planting) View.paint_places_for_plant(); //if window.planting == true
+    if(Game_events.rain_status) View.paint_rain(); //if window.rain == true
   },
 
   //paint game menu
@@ -166,9 +166,13 @@ var View = {
         //paint plant
         ctx.drawImage(Download_app.images_plants[plants[i].img_number], plants[i].x, plants[i].y, plants[i].size, plants[i].size);
         //over time the plant dries
-        plants[i].watering(); // water--;
+        if(!Game_events.rain_status) plants[i].watering(); // water--;
         //growing plant
         plants[i].growing(); // grow++;
+        if(Game_events.rain_status) {
+          plants[i].growing(); // accelerated growth
+          plants[i].watering("rain");
+        }
       }
       //IF PLANT GROWN
       if(plants[i].status == "grown") {
