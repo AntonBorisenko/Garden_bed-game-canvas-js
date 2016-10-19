@@ -142,6 +142,10 @@ var Click = {
       if((x > plate_stock_x && x < (plate_stock_x + plate_stock_size_x)) && (y > plate_stock_y && y < (plate_stock_y + plate_stock_size_y)) ) {
         Model.shop("stock");
       }
+      //in shop, main menu
+      if((x > shop_plate_x && x < (shop_plate_x + shop_plate_size_x)) && (y > shop_plate_y && y < (shop_plate_y + shop_plate_size_y)) ) {
+        Model.shop("main");
+      }
       //buy plant
       var selection = Shop.positions;
       for(var i = 0; i < Game_menu.array_plants.length; i++) {

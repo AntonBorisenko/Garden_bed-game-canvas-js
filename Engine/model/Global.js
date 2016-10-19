@@ -22,7 +22,7 @@ var Global = {
     window.download_app_y = canvas.height/2;
   },
 
-  define_status_variables: function(canvas) {
+  define_status_variables: function() {
     window.location_now;                  //location
     window.bag = false;                   //the state of the bag
     window.stock = false;                 //the state of the stock
