@@ -2,35 +2,39 @@
 
 var Game_events = {
 
-  //for rain effects
-  rain_status: false,
-  rain_load: 1500,
-  raining: 0,
+  rain: {
 
-  rain: function() {
-    //if it is not raining
-    if(!Game_events.rain_status) {
-      Game_events.rain_load += Math.round(Math.random() * 10);
-      if(Game_events.rain_load > 2000) {
-        Game_events.rain_status = true;
-        Game_events.rain_load = 0;
+    //for rain effects
+    status: false,
+    load: 1500,
+    duration: 0,
+
+    raining: function() {
+      //if it is not raining
+      if(!this.status) {
+        this.load += Math.round(Math.random() * 10);
+        if(this.load > 2000) {
+          this.status = true;
+          this.load = 0;
+        }
+      //raining!
+      } else {
+        this.duration += Math.round(Math.random() * 10);
+        if(this.duration > 500) {
+          this.status = false;
+          this.duration = false;
+        }
       }
-    //raining!
-    } else {
-      Game_events.raining += Math.round(Math.random() * 10);
-      if(Game_events.raining > 500) {
-        Game_events.rain_status = false;
-        Game_events.raining = false;
-      }
+    },
+
+    //for new game
+    reset_all: function() {
+      this.status = false;
+      this.load = 0;
+      this.duration = 0;
     }
-  },
 
-  //for new game
-  reset_all: function() {
-    Game_events.rain_status = false;
-    Game_events.rain_load = 0;
-    Game_events.raining = 0;
+
   }
-
 
 }

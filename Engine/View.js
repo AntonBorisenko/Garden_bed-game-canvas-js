@@ -27,7 +27,7 @@ var View = {
         View.paintShop();
     } else {
         View.draw_game();
-        Game_events.rain(); //the expected rain
+        Game_events.rain.raining(); //the expected rain
     }
   },
 
@@ -147,7 +147,9 @@ var View = {
 
     if(bag) View.paintBag(); //if window.bag == true
     if(planting) View.paint_places_for_plant(); //if window.planting == true
-    if(Game_events.rain_status) View.paint_rain(); //if window.rain == true
+    if(Game_events.rain.status) {
+      View.paint_rain(); //if window.rain == true
+    }
   },
 
   //paint game menu
@@ -166,10 +168,12 @@ var View = {
         //paint plant
         ctx.drawImage(Download_app.images_plants[plants[i].img_number], plants[i].x, plants[i].y, plants[i].size, plants[i].size);
         //over time the plant dries
-        if(!Game_events.rain_status) plants[i].watering(); // water--;
+        if(!Game_events.rain.status) plants[i].watering(); // water--;
         //growing plant
         plants[i].growing(); // grow++;
-        if(Game_events.rain_status) {
+        if(Game_events.rain.status) {
+          //paint hint
+          ctx.drawImage(Download_app.images_effects[0], (plants[i].x + plants[i].size), (plants[i].y-(hint_rain_size_y-hint_rain_size_y/3)), hint_rain_size_x, hint_rain_size_y);
           plants[i].growing(); // accelerated growth
           plants[i].watering("rain");
         }

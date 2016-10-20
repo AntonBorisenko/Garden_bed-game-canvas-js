@@ -13,6 +13,7 @@ var Global = {
     Global.define_stock(canvas);
     Global.define_shop(canvas);
     Global.define_prototype_plants();
+    Global.define_variables_for_game_effects(canvas);
   },
 
   define_download_app: function(canvas) {
@@ -275,6 +276,12 @@ var Global = {
     window.tomato_experience = 18;
     window.cabbage_price = 8;
     window.cabbage_experience = 17;
+  },
+
+  define_variables_for_game_effects: function(canvas) {
+    //HINT FOR RAIN
+    window.hint_rain_size_x = canvas.height/5;
+    window.hint_rain_size_y = canvas.height/5;
   }
 
 }
