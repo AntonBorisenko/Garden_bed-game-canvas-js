@@ -74,16 +74,17 @@ var View = {
   },
 
   paintShop: function() {
-    ctx.fillStyle = "lightgray";
-    ctx.fillRect(Shop.x, Shop.y, Shop.size_x, Shop.size_y);
-    //draw plate exit in game
-    ctx.drawImage(Download_app.images_shop[4], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
     if(window.shop == "main") {
+      ctx.drawImage(Download_app.images_shop[5], Shop.x, Shop.y, Shop.size_x, Shop.size_y)
+      ctx.drawImage(Download_app.images_shop[4], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
       ctx.drawImage(Download_app.images_shop[0], all_for_billets_x, all_for_billets_y, shop_icons_size_x, shop_icons_size_y); //all_for_billets
       ctx.drawImage(Download_app.images_shop[1], all_for_garden_x, all_for_garden_y, shop_icons_size_x, shop_icons_size_y); //all_for_garden
       ctx.drawImage(Download_app.images_shop[2], fertilizers_x, fertilizers_y, shop_icons_size_x, shop_icons_size_y); //fertilizers
-      ctx.drawImage(Download_app.images_shop[3], hurvest_and_seed_x, hurvest_and_seed_y, shop_icons_size_x, shop_icons_size_y); //hurvest_and_seed
-    } else if(window.shop == "hurvest and seed") {
+      ctx.drawImage(Download_app.images_shop[3], seed_x, seed_y, shop_icons_size_x, shop_icons_size_y); //hurvest_and_seed
+    } else if(window.shop == "seed") {
+      ctx.fillStyle = "lightgray";
+      ctx.fillRect(Shop.x, Shop.y, Shop.size_x, Shop.size_y);
+      ctx.drawImage(Download_app.images_shop[4], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
       //draw plate stock
       ctx.drawImage(Download_app.images_game_menu[5], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
       //draw plate shop
@@ -112,7 +113,7 @@ var View = {
       ctx.font = shop_price_text;
       //draw shop plants and prices
       for(var i = 0; i < plants.length; i++) {
-        ctx.drawImage(Download_app.images_plants[plants[i].img_number], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
+        ctx.drawImage(Download_app.images_seeds[plants[i].id_plant], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
         ctx.fillText("-" + plants[i].price + " бабосов" , Shop.positions[i].count_x, Shop.positions[i].count_y);
       }
     }
@@ -203,7 +204,7 @@ var View = {
     var j = 0;
     for(var i = 0; i < plants.length; i++) {
       if(plants[i].count > 0) {
-        ctx.drawImage(Download_app.images_plants[plants[i].img_number], Bag.positions[j].x, Bag.positions[j].y, Bag.positions[j].size_x, Bag.positions[j].size_y);
+        ctx.drawImage(Download_app.images_seeds[plants[i].id_plant], Bag.positions[j].x, Bag.positions[j].y, Bag.positions[j].size_x, Bag.positions[j].size_y);
         ctx.fillText(plants[i].count, Bag.positions[j].count_x, Bag.positions[j].count_y);
         j++;
       }

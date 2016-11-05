@@ -15,6 +15,8 @@ var Download_app = {
   images_shop: [],
   //an array with downloaded images for game effects
   images_effects: [],
+  //an array with downloaded images seeds
+  images_seeds: [],
 
   //Downloading images
   downloading: function() {
@@ -56,6 +58,8 @@ var Download_app = {
           load_images(img_for_shop, Download_app.images_shop, number);
       } else if(number == 7) {
           load_images(img_for_effects, Download_app.images_effects, number);
+      } else if(number == 8) {
+          load_images(img_for_seeds, Download_app.images_seeds, number);
       } else {
         //responce on the task
         Model.responce("download complete");
@@ -101,7 +105,10 @@ var img_plants_icons_for_download = ["img/Plants/ded.png","img/Plants icons/pota
                                      "img/Plants icons/cabbage.png"];
 
 var img_for_shop = ["img/Shop/all_for_billets.png", "img/Shop/all_for_garden.png",
-                    "img/Shop/fertilizers.png", "img/Shop/hurvest_and_seed.png",
-                    "img/Shop/exit_in_game.jpg"];
+                    "img/Shop/fertilizers.png", "img/Shop/seed.png",
+                    "img/Shop/exit_in_game.jpg", "img/Shop/fon.png" ];
 
-var img_for_effects = ["img/Effects/cloud_left_below.png"];                    
+var img_for_effects = ["img/Effects/cloud_left_below.png"];
+
+var img_for_seeds = ["img/Plants/ded.png","img/Seeds/potatoes.png", "img/Seeds/tomato.png",
+                     "img/Seeds/cabbage.png"]

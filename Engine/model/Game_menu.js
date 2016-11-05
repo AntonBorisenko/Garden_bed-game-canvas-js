@@ -54,9 +54,9 @@ var Game_menu = {
 
   create_bag: function() {
     //create positions plants(menu)
-    Game_menu.create_position_menu_item(bag_first_position_icon_x, bag_first_position_icon_y, size_bag_icon, size_bag_icon, bag_count_first_x, bag_count_first_y, Game_menu.array_for_bag);//first position
-    Game_menu.create_position_menu_item(bag_second_position_icon_x, bag_second_position_icon_y, size_bag_icon, size_bag_icon, bag_count_second_x, bag_count_second_y, Game_menu.array_for_bag);//second position
-    Game_menu.create_position_menu_item(bag_third_position_icon_x, bag_third_position_icon_y, size_bag_icon, size_bag_icon, bag_count_third_x, bag_count_third_y, Game_menu.array_for_bag);//third position
+    Game_menu.create_position_menu_item(bag_first_position_icon_x, bag_first_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_first_x, bag_count_first_y, Game_menu.array_for_bag);//first position
+    Game_menu.create_position_menu_item(bag_second_position_icon_x, bag_second_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_second_x, bag_count_second_y, Game_menu.array_for_bag);//second position
+    Game_menu.create_position_menu_item(bag_third_position_icon_x, bag_third_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_third_x, bag_count_third_y, Game_menu.array_for_bag);//third position
 
     Bag.positions = Game_menu.array_for_bag;
   },
@@ -72,9 +72,9 @@ var Game_menu = {
 
   create_shop: function() {
     //create positions plants
-    Game_menu.create_position_menu_item(shop_first_position_icon_x, shop_first_position_icon_y, size_shop_icon, size_shop_icon, shop_first_price_x, shop_first_price_y, Game_menu.array_for_shop);//first position
-    Game_menu.create_position_menu_item(shop_second_position_icon_x, shop_second_position_icon_y, size_shop_icon, size_shop_icon, shop_second_price_x, shop_second_price_y, Game_menu.array_for_shop);//second position
-    Game_menu.create_position_menu_item(shop_third_position_icon_x, shop_third_position_icon_y, size_shop_icon, size_shop_icon, shop_third_price_x, shop_third_price_y, Game_menu.array_for_shop);//third position
+    Game_menu.create_position_menu_item(shop_first_position_icon_x, shop_first_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_first_price_x, shop_first_price_y, Game_menu.array_for_shop);//first position
+    Game_menu.create_position_menu_item(shop_second_position_icon_x, shop_second_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_second_price_x, shop_second_price_y, Game_menu.array_for_shop);//second position
+    Game_menu.create_position_menu_item(shop_third_position_icon_x, shop_third_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_third_price_x, shop_third_price_y, Game_menu.array_for_shop);//third position
 
     Shop.positions = Game_menu.array_for_shop;
   },

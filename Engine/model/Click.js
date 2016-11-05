@@ -133,11 +133,20 @@ var Click = {
     }
     //shop, main menu
     if(window.shop == "main") {
-      if((x > hurvest_and_seed_x && x < (hurvest_and_seed_x + shop_icons_size_x)) && (y > hurvest_and_seed_y && y < (hurvest_and_seed_y + shop_icons_size_y)) ) {
-        Model.shop("hurvest and seed");
+      if((x > all_for_garden_x && x < (all_for_garden_x + shop_icons_size_x)) && (y > all_for_garden_y && y < (all_for_garden_y + shop_icons_size_y)) ) {
+        alert("Возможнось улучшения грядки ещё не доступна.");
+      }
+      if((x > fertilizers_x && x < (fertilizers_x + shop_icons_size_x)) && (y > fertilizers_y && y < (fertilizers_y + shop_icons_size_y)) ) {
+        alert("Возможнось покупать удобрения ещё не доступна.");
+      }
+      if((x > seed_x && x < (seed_x + shop_icons_size_x)) && (y > seed_y && y < (seed_y + shop_icons_size_y)) ) {
+        Model.shop("seed");
+      }
+      if((x > all_for_billets_x && x < (all_for_billets_x + shop_icons_size_x)) && (y > all_for_billets_y && y < (all_for_billets_y + shop_icons_size_y)) ) {
+        alert("Возможнось делать заготовки ещё не доступна.");
       }
     //shop, hurvest and seed
-    } else if(window.shop == "hurvest and seed") {
+    } else if(window.shop == "seed") {
       //in stock
       if((x > plate_stock_x && x < (plate_stock_x + plate_stock_size_x)) && (y > plate_stock_y && y < (plate_stock_y + plate_stock_size_y)) ) {
         Model.shop("stock");

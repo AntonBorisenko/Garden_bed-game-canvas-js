@@ -54,7 +54,7 @@ var Model = {
     Garden_bed.images_for_hurvest = [];
     Game_menu.array_plants = [];
     Garden_bed.init();
-    Game_events.reset_all();
+    Game_events.rain.reset_all();
   },
 
   //creating main menu
@@ -111,7 +111,7 @@ var Model = {
         Shop.init_proportions();
       }
       window.location_now = "shop";
-      window.shop = "hurvest and seed";
+      window.shop = "seed";
     } else {
       window.stock = false;
       window.location_now = "game";
@@ -124,8 +124,8 @@ var Model = {
       window.location_now = "game";
     } else if(status == "stock") {
       Stock.click_on_the_icon();
-    } else if(status == "hurvest and seed") {
-      window.shop = "hurvest and seed";
+    } else if(status == "seed") {
+      window.shop = "seed";
     } else if(status == "main") {
       window.shop = "main";
     }
