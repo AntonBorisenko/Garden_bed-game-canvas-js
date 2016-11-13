@@ -9,10 +9,10 @@ var Global = {
     Global.define_main_menu(canvas);
     Global.define_garden_bed(canvas);
     Global.define_game_menu_icons(canvas);
+    Global.define_plants_values(canvas);
     Global.define_bag(canvas);
     Global.define_stock(canvas);
     Global.define_shop(canvas);
-    Global.define_prototype_plants();
     Global.define_variables_for_game_effects(canvas);
   },
 
@@ -126,6 +126,29 @@ var Global = {
     game_menu_icon_bailer_y + size_smal_icons_x + distance_icons;
     window.game_menu_icon_stock_y = game_menu_icon_shovel_y + size_smal_icons_x + distance_icons;
     window.game_menu_icon_shop_y = window.game_menu_icon_stock_y + size_smal_icons_x + distance_icons;
+  },
+
+  define_plants_values: function(canvas) {
+    //values for progress of plant growth
+    window.width_plant_progress = canvas.width / 21.33;
+    window.height_plant_progress = width_plant_progress / 3.75;
+    window.radius_plant_progress = height_plant_progress / 2;
+    //text_progress
+    var size_px = canvas.width/60;
+    window.plant_font_progress = size_px + "px Georgia";
+    window.plant_progress_text_indent_x = canvas.width / 150;
+    window.plant_progress_text_indent_y = canvas.width / 30;
+    //prices
+    window.potatoes_price = 6;
+    window.potatoes_experience = 12;
+    window.tomato_price = 10;
+    window.tomato_experience = 18;
+    window.cabbage_price = 8;
+    window.cabbage_experience = 17;
+    //grown time
+    window.potatoes_grown_time = 14000;
+    window.tomato_grown_time = 190000;
+    window.cabbage_grown_time = 12000;
   },
 
   //define bag location and proportions, and bag items
@@ -269,15 +292,6 @@ var Global = {
     window.shop_third_price_y = shop_third_position_icon_y + (size_shop_icon_y/1.6);
     window.shop_second_price_y = shop_second_position_icon_y + (size_shop_icon_y/1.6);
 
-  },
-
-  define_prototype_plants: function() {
-    window.potatoes_price = 6;
-    window.potatoes_experience = 12;
-    window.tomato_price = 10;
-    window.tomato_experience = 18;
-    window.cabbage_price = 8;
-    window.cabbage_experience = 17;
   },
 
   define_variables_for_game_effects: function(canvas) {

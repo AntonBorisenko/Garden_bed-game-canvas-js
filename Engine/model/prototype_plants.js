@@ -39,7 +39,8 @@ Plant.prototype.growing = function() {
     var size = window.hurvest_img_size;
     Model.plant_has_groun(this.place,x,y,size);
   }
-
+  //For drawing growth progress
+  return this.grow_now;
 }
 
 
@@ -50,7 +51,7 @@ Plant.prototype.growing = function() {
 function Potatoes(x,y,place,grown) {
   var id = 1;
   var name = "potatoes";
-  var grown = 14000;
+  var grown = potatoes_grown_time;
   var img_number = 1;
   var price = potatoes_price;
   var experience = potatoes_experience;
@@ -89,7 +90,7 @@ Potatoes.prototype.watering = function(status) {
 function Tomato(x,y,place,grown) {
   var id = 2;
   var name = "tomato";
-  var grown = 10000;
+  var grown = tomato_grown_time;
   var img_number = 4;
   var price = tomato_price;
   var experience = tomato_experience;
@@ -128,7 +129,7 @@ Tomato.prototype.watering = function(status) {
 function Cabbage(x,y,place,grown) {
   var id = 3;
   var name = "cabbage";
-  var grown = 12000;
+  var grown = cabbage_grown_time;
   var img_number = 7;
   var price = cabbage_price;
   var experience = cabbage_experience;

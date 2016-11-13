@@ -171,7 +171,9 @@ var View = {
         //over time the plant dries
         if(!Game_events.rain.status) plants[i].watering(); // water--;
         //growing plant
-        plants[i].growing(); // grow++;
+        var progress_grow = plants[i].growing(); // grow++;
+        //Draw the progress of plant growth
+        View.paint_plants_progress((plants[i].x + plants[i].size), plants[i].y, progress_grow, plants[i].grown);
         if(Game_events.rain.status) {
           //paint hint
           ctx.drawImage(Download_app.images_effects[0], (plants[i].x + plants[i].size), (plants[i].y-(hint_rain_size_y-hint_rain_size_y/3)), hint_rain_size_x, hint_rain_size_y);
@@ -192,6 +194,77 @@ var View = {
         ctx.drawImage(Download_app.images_for_game[1], plants[i].x, plants[i].y, plants[i].size, plants[i].size);
       }
     }
+  },
+
+  paint_plants_progress(x, y, progress_grow, time_grown) {
+    var width = width_plant_progress;
+    var height = height_plant_progress;
+    var radius = radius_plant_progress;
+    //draw substrate
+    ctx.fillStyle = "gray";
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.arc(x + width - radius, y + radius, radius, -Math.PI/2, Math.PI/2, false);
+    ctx.lineTo(x + radius, y + height);
+    ctx.arc(x + radius, y + radius, radius, Math.PI/2, 3*Math.PI/2, false);
+    ctx.closePath();
+    ctx.fill();
+    var max = width;
+    width = width * (progress_grow / time_grown);
+    //draw progress
+    ctx.fillStyle = "green";
+    // смещение для отрисовки хорды
+     var offset = 0;
+     ctx.beginPath();
+     if (width<radius) {
+         offset = radius - Math.sqrt(Math.pow(radius,2)-Math.pow((radius-width),2));
+         // Левый угол
+         var left_angle = Math.acos((radius - width) / radius);
+         ctx.moveTo(x + width, y+offset);
+         ctx.lineTo(x + width, y+height-offset);
+         ctx.arc(x + radius, y + radius, radius, Math.PI - left_angle, Math.PI + left_angle, false);
+     }
+     else if (width+radius>max) {
+         offset = radius - Math.sqrt(Math.pow(radius,2)-Math.pow((radius - (max-width)),2));
+         // Правый угол
+         var right_angle = Math.acos((radius - (max-width)) / radius);
+         ctx.moveTo(x + radius, y);
+         ctx.lineTo(x + width, y);
+         ctx.arc(x+max-radius, y + radius, radius, -Math.PI/2, -right_angle, false);
+         ctx.lineTo(x + width, y+height-offset);
+         ctx.arc(x+max-radius, y + radius, radius, right_angle, Math.PI/2, false);
+         ctx.lineTo(x + radius, y + height);
+         ctx.arc(x+radius, y+radius, radius, Math.PI/2, 3*Math.PI/2, false);
+     }
+     else {
+         ctx.moveTo(x + radius, y);
+         ctx.lineTo(x + width, y);
+         ctx.lineTo(x + width, y + height);
+         ctx.lineTo(x + radius, y + height);
+         ctx.arc(x+radius, y+radius, radius, Math.PI/2, 3*Math.PI/2, false);
+     }
+     ctx.closePath();
+     ctx.fill();
+     //calculate the remaining time
+     var minutes_left = Math.floor((time_grown - progress_grow) / 60000);
+     var seconds_left;
+     var time_left;
+     var indent_x;
+     if(minutes_left < 1) {
+       indent_x = plant_progress_text_indent_x;
+       seconds_left = Math.floor((time_grown - progress_grow) / 1000);
+       time_left = seconds_left + "s";
+     } else {
+       indent_x = plant_progress_text_indent_x / 3;
+       time_left = minutes_left + "m ";
+       seconds_left = Math.floor(((time_grown - progress_grow) % 60000) / 1000);
+       time_left += seconds_left + "s";
+     }
+     //write the remaining time
+     ctx.fillStyle = "lightgray";
+     ctx.font = plant_font_progress;
+     ctx.fillText(time_left, x + indent_x, y + plant_progress_text_indent_y);
   },
 
   paintBag: function() {
