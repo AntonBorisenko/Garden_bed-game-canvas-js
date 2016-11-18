@@ -196,7 +196,7 @@ var View = {
     }
   },
 
-  paint_plants_progress(x, y, progress_grow, time_grown) {
+  paint_plants_progress: function(x, y, progress_grow, time_grown) {
     var width = width_plant_progress;
     var height = height_plant_progress;
     var radius = radius_plant_progress;

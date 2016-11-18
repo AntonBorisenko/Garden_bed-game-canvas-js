@@ -166,7 +166,7 @@ var Click = {
   },
 
   //Planting plant in the place
-  planting(x,y) {
+  planting: function(x,y) {
     var places = Garden_bed.places_for_planting;
     var size = 100;
     for(var i = 0; i < places.length; i++) {
