@@ -52,7 +52,8 @@ var Model = {
     User.experience = 0;
     Garden_bed.plants = [];
     Garden_bed.images_for_hurvest = [];
-    Game_menu.array_plants = [];
+    Stock.plants = [];
+    Bag.seeds = [];
     Garden_bed.init();
     Game_events.rain.reset_all();
   },
@@ -89,10 +90,10 @@ var Model = {
   bag: function(selection) {
     //Define variables
     if(selection === 0 || selection > 0) {
-      window.plant_for_planting = Game_menu.array_plants[selection].Obj_name;
+      window.plant_for_planting = Bag.seeds[selection].Obj_name;
       window.planting = true;
       window.location_now = "planting";
-      Game_menu.array_plants[selection].count--;
+      Bag.seeds[selection].count--;
     } else {
       window.bag = false;
       window.location_now = "game";
@@ -104,8 +105,8 @@ var Model = {
   stock: function(selection) {
     //Define variables
     if(selection === 0 || selection > 0) {
-      Game_menu.array_plants[selection].count--;
-      Model.sell_plant(Game_menu.array_plants[selection].price);
+      Stock.plants[selection].count--;
+      Model.sell_plant(Stock.plants[selection].price);
     } else if(selection == "shop") {
       if(!this.x||!this.y||!this.size_x||this.size_y) {
         Shop.init_proportions();
@@ -132,12 +133,12 @@ var Model = {
   },
 
   buy_plant: function(i) {
-    if((User.money = User.money - Game_menu.array_plants[i].price) >= 0 ) {
+    if((User.money = User.money - Bag.seeds[i].price) >= 0 ) {
       //User.money = User.money - Game_menu.array_plants[i].price;
-      Game_menu.array_plants[i].count++;
+      Bag.seeds[i].count++;
       window.buy_now = true;   //effects
     } else {
-      User.money = User.money + Game_menu.array_plants[i].price;
+      User.money = User.money + Bag.seeds[i].price;
       alert("Бабосов-то нема");
     }
   },
@@ -183,9 +184,9 @@ var Model = {
   },
 
   hurvesting: function(number_place,number_plant,number_image_hurvest, id_plant) {
-    var plants = Game_menu.array_plants;
+    var plants = Stock.plants;
     for(var i = 0; i < plants.length; i++ ) {
-      if(plants[i].id_plant == id_plant) {
+      if(plants[i].id_plant === id_plant) {
         if(plants[i].experience > 0) {
           User.experience += plants[i].experience;
           window.hurvest_experience = true; //effects

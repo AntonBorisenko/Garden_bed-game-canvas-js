@@ -61,7 +61,7 @@ var View = {
     //paint plants
     ctx.fillStyle = "black";
     ctx.font = stock_count_text;
-    var plants = Game_menu.array_plants;
+    var plants = Stock.plants;
     var j = 0;
     for(var i = 0; i < plants.length; i++) {
       if(plants[i].count > 0) {
@@ -85,8 +85,8 @@ var View = {
       ctx.fillStyle = "lightgray";
       ctx.fillRect(Shop.x, Shop.y, Shop.size_x, Shop.size_y);
       ctx.drawImage(Download_app.images_shop[4], shop_exit_in_game_x, shop_exit_in_game_y, shop_exit_in_game_size_x, shop_exit_in_game_size_y);
-      //draw plate stock
-      ctx.drawImage(Download_app.images_game_menu[5], plate_stock_x, plate_stock_y, plate_stock_size_x, plate_stock_size_y);
+      //draw plate bag
+      ctx.drawImage(Download_app.images_game_menu[4], plate_bag_x, plate_bag_y, plate_bag_size_x, plate_bag_size_y);
       //draw plate shop
       ctx.drawImage(Download_app.images_game_menu[6], shop_plate_x, shop_plate_y, shop_plate_size_x, shop_plate_size_y);
       //paint user money
@@ -96,25 +96,25 @@ var View = {
         ctx.fillStyle = "red";
         window.buy_now = false;
       }
-      ctx.fillText("Бабосы: " + User.money, shop_money_user_x, shop_money_user_y);
+      ctx.fillText("Бабосы: " + User.money, bag_money_user_x, bag_money_user_y);
       //paint plants
       ctx.fillStyle = "black";
-      ctx.font = stock_count_text;
-      var plants = Game_menu.array_plants;
-      //draw stock plants
+      ctx.font = bag_count_text;
+      var seeds = Bag.seeds;
+      //draw bag seeds
       var j = 0;
-      for(var i = 0; i < plants.length; i++) {
-        if(plants[i].count > 0) {
-          ctx.drawImage(Download_app.images_plants[plants[i].img_number], Stock.positions[j].x, Stock.positions[j].y, Stock.positions[j].size_x, Stock.positions[j].size_y);
-          ctx.fillText(plants[i].count, Stock.positions[j].count_x, Stock.positions[j].count_y);
+      for(var i = 0; i < seeds.length; i++) {
+        if(seeds[i].count > 0) {
+          ctx.drawImage(Download_app.images_seeds[seeds[i].img_number], Bag.positions_in_shop[j].x, Bag.positions_in_shop[j].y, Bag.positions_in_shop[j].size_x, Bag.positions_in_shop[j].size_y);
+          ctx.fillText(seeds[i].count, Bag.positions_in_shop[j].count_x, Bag.positions_in_shop[j].count_y);
           j++;
         }
       }
       ctx.font = shop_price_text;
       //draw shop plants and prices
-      for(var i = 0; i < plants.length; i++) {
-        ctx.drawImage(Download_app.images_seeds[plants[i].id_plant], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
-        ctx.fillText("-" + plants[i].price + " бабосов" , Shop.positions[i].count_x, Shop.positions[i].count_y);
+      for(var i = 0; i < seeds.length; i++) {
+        ctx.drawImage(Download_app.images_seeds[seeds[i].id_plant], Shop.positions[i].x, Shop.positions[i].y, Shop.positions[i].size_x, Shop.positions[i].size_y);
+        ctx.fillText("-" + seeds[i].price + " бабосов" , Shop.positions[i].count_x, Shop.positions[i].count_y);
       }
     }
   },
@@ -254,12 +254,12 @@ var View = {
      if(minutes_left < 1) {
        indent_x = plant_progress_text_indent_x;
        seconds_left = Math.floor((time_grown - progress_grow) / 1000);
-       time_left = seconds_left + "s";
+       time_left = seconds_left + "с";
      } else {
        indent_x = plant_progress_text_indent_x / 3;
-       time_left = minutes_left + "m ";
+       time_left = minutes_left + "м ";
        seconds_left = Math.floor(((time_grown - progress_grow) % 60000) / 1000);
-       time_left += seconds_left + "s";
+       time_left += seconds_left + "с";
      }
      //write the remaining time
      ctx.fillStyle = "lightgray";
@@ -270,15 +270,15 @@ var View = {
   paintBag: function() {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(Bag.x, Bag.y, Bag.size_x, Bag.size_y);
-    //paint plants icons
+    //paint seeds icons
     ctx.fillStyle = "black";
     ctx.font = bag_count_text;
-    var plants = Game_menu.array_plants;
+    var seeds = Bag.seeds;
     var j = 0;
-    for(var i = 0; i < plants.length; i++) {
-      if(plants[i].count > 0) {
-        ctx.drawImage(Download_app.images_seeds[plants[i].id_plant], Bag.positions[j].x, Bag.positions[j].y, Bag.positions[j].size_x, Bag.positions[j].size_y);
-        ctx.fillText(plants[i].count, Bag.positions[j].count_x, Bag.positions[j].count_y);
+    for(var i = 0; i < seeds.length; i++) {
+      if(seeds[i].count > 0) {
+        ctx.drawImage(Download_app.images_seeds[seeds[i].id_plant], Bag.positions[j].x, Bag.positions[j].y, Bag.positions[j].size_x, Bag.positions[j].size_y);
+        ctx.fillText(seeds[i].count, Bag.positions[j].count_x, Bag.positions[j].count_y);
         j++;
       }
     }
@@ -290,7 +290,7 @@ var View = {
     document.body.style.cursor = "url('img/Icons/grain.png'), auto";
     var places = Garden_bed.places_for_planting;
     for(var i = 0; i < places.length; i++) {
-      if(places[i].plant == false) {
+      if(places[i].plant === false) {
         ctx.fillRect(places[i].x, places[i].y, size, size);
       }
     }

@@ -158,6 +158,7 @@ var Global = {
     window.bag_size_y = canvas.height/2;
     window.bag_x = garden_width + garden_padding_left;
     window.bag_y = game_menu_icon_bag_y;
+    //////////////////////////////////////////
     //define proportion and location bag items
     var distance_icon = canvas.width/80;
     window.size_bag_icon_x = canvas.height/13;
@@ -183,6 +184,47 @@ var Global = {
     //y
     window.bag_count_first_y = window.bag_count_second_y =
     window.bag_count_third_y = first_three_icon;
+    //////////////////////////////////////////////////
+    //BAG IN SHOP
+    //icon stock
+    window.plate_bag_size_x = canvas.height/9;
+    window.plate_bag_size_y = plate_bag_size_x;
+    window.plate_bag_x = garden_padding_left*6;
+    window.plate_bag_y = garden_padding_top*2;
+    //money User
+    var bag_money_user_size_px = canvas.width/50;
+    window.bag_money_user_text = "italic " + bag_money_user_size_px + "px Arial";
+    window.bag_money_user_x = garden_padding_left*4;
+    window.bag_money_user_y = (garden_padding_top*5) + plate_bag_size_y;
+    //Define proportion and location bag in SHOP items
+    window.bag_in_shop_x = garden_padding_left;
+    window.bag_in_shop_y = garden_padding_top;
+    var distance_icon = canvas.width/80;
+    window.size_bag_in_shop_icon_x = canvas.height/13;
+    window.size_bag_in_shop_icon_y = size_bag_icon_x*8/5;
+    //size_x
+    window.bag_in_shop_first_position_icon_size_x = window.bag_in_shop_second_position_icon_size_x =
+    window.bag_in_shop_third_position_icon_size_x = size_bag_in_shop_icon_x;
+    //size_y
+    window.bag_in_shop_first_position_icon_size_y = window.bag_in_shop_second_position_icon_size_y =
+    window.bag_in_shop_third_position_icon_size_y = size_bag_in_shop_icon_y;
+    //x
+    window.bag_in_shop_first_position_icon_x = bag_in_shop_x + distance_icon;
+    window.bag_in_shop_second_position_icon_x = bag_in_shop_x + size_bag_in_shop_icon_x + (distance_icon*2);
+    window.bag_in_shop_third_position_icon_x = bag_in_shop_x + (size_bag_in_shop_icon_x*2) + (distance_icon*3);
+    //y
+    var first_three_icon = window.bag_in_shop_first_position_icon_y = window.bag_in_shop_second_position_icon_y =
+    window.bag_in_shop_third_position_icon_y = bag_in_shop_y + (distance_icon*11);
+    //bag in shop count
+    var bag_in_shop_size_px = canvas.width/71.1;
+    window.bag_in_shop_count_text = bag_in_shop_size_px + "px Georgia";
+    //x
+    window.bag_in_shop_count_first_x = bag_in_shop_first_position_icon_x  + size_bag_in_shop_icon_x;
+    window.bag_in_shop_count_second_x = bag_in_shop_second_position_icon_x + size_bag_in_shop_icon_x;
+    window.bag_in_shop_count_third_x = bag_in_shop_third_position_icon_x + size_bag_in_shop_icon_x;
+    //y
+    window.bag_in_shop_count_first_y = window.bag_in_shop_count_second_y =
+    window.bag_in_shop_count_third_y = first_three_icon;
   },
 
   define_stock: function(canvas) {
@@ -272,10 +314,6 @@ var Global = {
     var distance_icon = canvas.width/80;
     window.size_shop_icon_x = canvas.height/13;
     window.size_shop_icon_y = size_bag_icon_x*8/5;
-    //size_x and size_y
-    window.shop_first_position_icon_size_x = window.shop_first_position_icon_size_y =
-    window.shop_second_position_icon_size_x = window.shop_second_position_icon_size_y =
-    window.shop_third_position_icon_size_x = window.shop_third_position_icon_size_y = size_shop_icon_x;
     //x
     window.shop_first_position_icon_x = window.shop_third_position_icon_x = shop_plate_x - distance_icon*2;
     window.shop_second_position_icon_x = shop_plate_x + shop_plate_size_x - distance_icon;

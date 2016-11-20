@@ -54,6 +54,7 @@ var Click = {
     for(var i = 0; i < menu.length; i++) {
       if((x > menu[i].x && x < (menu[i].x + menu[i].size_x) ) && (y > menu[i].y && y < (menu[i].y + menu[i].size_y)) )  {
         Model.main_menu_click(menu[i].Obj_name);
+        return;
       }
     }
   },
@@ -64,6 +65,7 @@ var Click = {
     for(var i = 0; i < menu.length; i++) {
       if((x > menu[i].x && x < (menu[i].x + menu[i].size_x) ) && (y > menu[i].y && y < (menu[i].y + menu[i].size_y)) ) {
         Model.game_menu_click(menu[i].Obj_name);
+        return;
       }
     }
     //check on the harvest
@@ -73,12 +75,13 @@ var Click = {
         if((x > hurvest[i].x && x < (hurvest[i].x + hurvest[i].size) ) && (y > hurvest[i].y && y < (hurvest[i].y + hurvest[i].size)) ) {
           //define number place in array Garden_bed.plants
           for(var n = 0; n < Garden_bed.plants.length; n++) {
-            if(Garden_bed.plants[n].place == hurvest[i].place) {
+            if(Garden_bed.plants[n].place === hurvest[i].place) {
               var number_plant = n;
               var id_plant = Garden_bed.plants[n].id;
             }
           }
           Model.hurvesting(hurvest[i].place, number_plant, i, id_plant);//hurvesting
+          return;
         }
       }
     }
@@ -89,8 +92,8 @@ var Click = {
     if((x > Bag.x && x < (Bag.x + Bag.size_x)) && (y > Bag.y && y < (Bag.y + Bag.size_y)) ) {
        var selection = Bag.positions;
        var j = 0;
-       for(var i = 0; i < Game_menu.array_plants.length; i++) {
-         if(Game_menu.array_plants[i].count > 0) {
+       for(var i = 0; i < Bag.seeds.length; i++) {
+         if(Bag.seeds[i].count > 0) {
            if((x > selection[j].x && x < (selection[j].x + selection[j].size_x)) && (y > selection[j].y && y < (selection[j].y + selection[j].size_y)) ) {
               Model.bag(i);
            }
@@ -115,8 +118,8 @@ var Click = {
     //selection plants
     var selection = Stock.positions;
     var j = 0;
-    for(var i = 0; i < Game_menu.array_plants.length; i++) {
-      if(Game_menu.array_plants[i].count > 0) {
+    for(var i = 0; i < Stock.plants.length; i++) {
+      if(Stock.plants[i].count > 0) {
         if((x > selection[j].x && x < (selection[j].x + selection[j].size_x)) && (y > selection[j].y && y < (selection[j].y + selection[j].size_y)) ) {
           Model.stock(i);
         }
@@ -147,17 +150,13 @@ var Click = {
       }
     //shop, hurvest and seed
     } else if(window.shop == "seed") {
-      //in stock
-      if((x > plate_stock_x && x < (plate_stock_x + plate_stock_size_x)) && (y > plate_stock_y && y < (plate_stock_y + plate_stock_size_y)) ) {
-        Model.shop("stock");
-      }
       //in shop, main menu
       if((x > shop_plate_x && x < (shop_plate_x + shop_plate_size_x)) && (y > shop_plate_y && y < (shop_plate_y + shop_plate_size_y)) ) {
         Model.shop("main");
       }
       //buy plant
       var selection = Shop.positions;
-      for(var i = 0; i < Game_menu.array_plants.length; i++) {
+      for(var i = 0; i < Bag.seeds.length; i++) {
         if((x > selection[i].x && x < (selection[i].x + selection[i].size_x)) && (y > selection[i].y && y < (selection[i].y + selection[i].size_y)) ) {
           Model.buy_plant(i);
         }
@@ -171,9 +170,10 @@ var Click = {
     var size = 100;
     for(var i = 0; i < places.length; i++) {
       if((x > places[i].x && x < (places[i].x + size)) && (y > places[i].y && y < (places[i].y + size)) ) {
-        if(places[i].plant == false) {
+        if(places[i].plant === false) {
           //give place number
           Model.planting(i);
+          return;
         }
       }
     }
@@ -202,7 +202,7 @@ var Click = {
     for(var i = 0; i < plants.length; i++) {
       if((x > plants[i].x && x < (plants[i].x + plants[i].size)) && (y > plants[i].y && y < (plants[i].y + plants[i].size)) ) {
         if(plants[i].status != "grown") {
-          Model.digging(plants[i].place, i);//digging
+          Model.digging(plants[i].place, i);
         }
       }
     }

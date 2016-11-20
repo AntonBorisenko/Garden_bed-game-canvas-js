@@ -3,13 +3,8 @@
 //Menu(top and right)
 var Game_menu = {
 
-  //This arrays needs to track clicks
+  //This array for game menu(on garden bed)
   array_menu: [],
-  array_for_bag: [],
-  array_for_stock: [],
-  array_for_stock_count_plants: [],
-  array_for_shop: [],
-  array_plants: [],
 
   make: function() {
     //zero out an array
@@ -21,8 +16,8 @@ var Game_menu = {
       //Add in array
       Game_menu.array_menu.push(menu_icon);
       if(Game_menu.array_menu.length == 7) {
-        if(Game_menu.array_plants.length == 0) {
-          Game_menu.create_array_plants();
+        if(Bag.seeds.length == 0) {
+          Game_menu.create_array_plants_and_seeds();
           Game_menu.create_bag();
           Game_menu.create_stock();
           Game_menu.create_shop();
@@ -40,43 +35,50 @@ var Game_menu = {
     create_menu_item(Download_app.images_game_menu[6], game_menu_icon_shop_x, game_menu_icon_shop_y, game_menu_icon_shop_size_x, game_menu_icon_shop_size_y, "Shop");//shop
   },
 
-  create_array_plants: function() {
-    //array plants for stock and bag
+  create_array_plants_and_seeds: function() {
+    //array plants for stock
     function create_plants(Obj_name, id_plant, count, price, experience, img_number) {
       var plant = new Create_plant(Obj_name, id_plant, count, price, experience, img_number);//functions.js
-      Game_menu.array_plants.push(plant);
+      Stock.plants.push(plant);
     }
-    create_plants(Potatoes, 1, 4, potatoes_price, potatoes_experience, 1);
-    create_plants(Tomato, 2, 2, tomato_price, tomato_experience, 4);
-    create_plants(Cabbage, 3, 6, cabbage_price, cabbage_experience, 7);
+    //array seeds for bag in game menu and bag for shop
+    function create_seeds(Obj_name, id_plant, count, price, experience, img_number) {
+      var plant = new Create_plant(Obj_name, id_plant, count, price, experience, img_number);//functions.js
+      Bag.seeds.push(plant);
+    }
+    //plants for stock
+    create_plants(Potatoes, 1, 0, potatoes_price, potatoes_experience, 1);
+    create_plants(Tomato, 2, 0, tomato_price, tomato_experience, 4);
+    create_plants(Cabbage, 3, 0, cabbage_price, cabbage_experience, 7);
+    //seeds for bag
+    create_seeds(Potatoes, 1, 4, potatoes_price, potatoes_experience, 1);
+    create_seeds(Tomato, 2, 2, tomato_price, tomato_experience, 2);
+    create_seeds(Cabbage, 3, 6, cabbage_price, cabbage_experience, 3);
   },
-
 
   create_bag: function() {
     //create positions plants(menu)
-    Game_menu.create_position_menu_item(bag_first_position_icon_x, bag_first_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_first_x, bag_count_first_y, Game_menu.array_for_bag);//first position
-    Game_menu.create_position_menu_item(bag_second_position_icon_x, bag_second_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_second_x, bag_count_second_y, Game_menu.array_for_bag);//second position
-    Game_menu.create_position_menu_item(bag_third_position_icon_x, bag_third_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_third_x, bag_count_third_y, Game_menu.array_for_bag);//third position
-
-    Bag.positions = Game_menu.array_for_bag;
+    Game_menu.create_position_menu_item(bag_first_position_icon_x, bag_first_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_first_x, bag_count_first_y, Bag.positions);//first position
+    Game_menu.create_position_menu_item(bag_second_position_icon_x, bag_second_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_second_x, bag_count_second_y, Bag.positions);//second position
+    Game_menu.create_position_menu_item(bag_third_position_icon_x, bag_third_position_icon_y, size_bag_icon_x, size_bag_icon_y, bag_count_third_x, bag_count_third_y, Bag.positions);//third position
+    //create positions plants
+    Game_menu.create_position_menu_item(bag_in_shop_first_position_icon_x, bag_in_shop_first_position_icon_y, size_bag_in_shop_icon_x, size_bag_in_shop_icon_y, bag_in_shop_count_first_x, bag_in_shop_count_first_y, Bag.positions_in_shop);//first position
+    Game_menu.create_position_menu_item(bag_in_shop_second_position_icon_x, bag_in_shop_second_position_icon_y, size_bag_in_shop_icon_x, size_bag_in_shop_icon_y, bag_in_shop_count_second_x, bag_in_shop_count_second_y, Bag.positions_in_shop);//second position
+    Game_menu.create_position_menu_item(bag_in_shop_third_position_icon_x, bag_in_shop_third_position_icon_y, size_bag_in_shop_icon_x, size_bag_in_shop_icon_y, bag_in_shop_count_third_x, bag_in_shop_count_third_y, Bag.positions_in_shop);//third position
   },
 
   create_stock: function() {
     //create positions plants
-    Game_menu.create_position_menu_item(stock_first_position_icon_x, stock_first_position_icon_y, size_stock_icon, size_stock_icon, stock_count_first_x, stock_count_first_y, Game_menu.array_for_stock);//first position
-    Game_menu.create_position_menu_item(stock_second_position_icon_x, stock_second_position_icon_y, size_stock_icon, size_stock_icon, stock_count_second_x, stock_count_second_y, Game_menu.array_for_stock);//second position
-    Game_menu.create_position_menu_item(stock_third_position_icon_x, stock_third_position_icon_y, size_stock_icon, size_stock_icon, stock_count_third_x, stock_count_third_y, Game_menu.array_for_stock);//third position
-
-    Stock.positions = Game_menu.array_for_stock;
+    Game_menu.create_position_menu_item(stock_first_position_icon_x, stock_first_position_icon_y, size_stock_icon, size_stock_icon, stock_count_first_x, stock_count_first_y, Stock.positions);//first position
+    Game_menu.create_position_menu_item(stock_second_position_icon_x, stock_second_position_icon_y, size_stock_icon, size_stock_icon, stock_count_second_x, stock_count_second_y, Stock.positions);//second position
+    Game_menu.create_position_menu_item(stock_third_position_icon_x, stock_third_position_icon_y, size_stock_icon, size_stock_icon, stock_count_third_x, stock_count_third_y, Stock.positions);//third position
   },
 
   create_shop: function() {
     //create positions plants
-    Game_menu.create_position_menu_item(shop_first_position_icon_x, shop_first_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_first_price_x, shop_first_price_y, Game_menu.array_for_shop);//first position
-    Game_menu.create_position_menu_item(shop_second_position_icon_x, shop_second_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_second_price_x, shop_second_price_y, Game_menu.array_for_shop);//second position
-    Game_menu.create_position_menu_item(shop_third_position_icon_x, shop_third_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_third_price_x, shop_third_price_y, Game_menu.array_for_shop);//third position
-
-    Shop.positions = Game_menu.array_for_shop;
+    Game_menu.create_position_menu_item(shop_first_position_icon_x, shop_first_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_first_price_x, shop_first_price_y, Shop.positions);//first position
+    Game_menu.create_position_menu_item(shop_second_position_icon_x, shop_second_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_second_price_x, shop_second_price_y, Shop.positions);//second position
+    Game_menu.create_position_menu_item(shop_third_position_icon_x, shop_third_position_icon_y, size_shop_icon_x, size_shop_icon_y, shop_third_price_x, shop_third_price_y, Shop.positions);//third position
   },
 
   //create positions plants(menu)
@@ -143,12 +145,14 @@ var Shovel = {
 //bag
 var Bag = {
 
-  //coordinates
+  //coordinates in bag
   x:0,
   y:0,
   size_x:0,
   size_y:0,
-  positions: null,
+  positions: [],
+  positions_in_shop: [],
+  seeds: [],
 
   click_on_the_icon: function() {
     if(!Bag.x||!Bag.y||!Bag.size_x||Bag.size_y) {
@@ -159,6 +163,7 @@ var Bag = {
   },
 
   init_proportions: function() {
+    //in bag
       Bag.x = bag_x;
       Bag.y = bag_y;
       Bag.size_x = bag_size_x;
@@ -176,6 +181,8 @@ var Stock = {
   y: 0,
   size_x: 0,
   size_y: 0,
+  positions: [],
+  plants: [],
 
   //public methods
   click_on_the_icon: function() {
@@ -202,7 +209,7 @@ var Shop = {
   size_x: 0,
   size_y: 0,
 
-  positions: null,
+  positions: [],
 
   //public methods
   click_on_the_icon: function() {

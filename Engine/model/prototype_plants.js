@@ -31,7 +31,7 @@ Plant.prototype.watering = function(bailer) {
 Plant.prototype.growing = function() {
   this.grow_now = this.grow_now + View.interval;
   //time to harvest
-  if(this.grow_now >= this.grown) {
+  if(this.grow_now > this.grown && this.status == "grow") {
     this.status = "grown";
     //We ask the model to create a picture for the harvest
     var x = this.x + this.size;
