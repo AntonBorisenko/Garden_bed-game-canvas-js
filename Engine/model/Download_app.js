@@ -73,13 +73,7 @@ var Download_app = {
 
 }
 
-var images_for_game =    ["img/Playing field/fone.jpg","img/Plants/ded.png","img/Icons/hurvest.png",
-                          "img/Playing field/soil.jpg","img/Playing field/fone.jpg","img/Playing field/soil.jpg",
-                          "img/Playing field/soil.jpg","img/Playing field/soil.jpg","img/Playing field/soil.jpg",
-                          "img/Playing field/soil.jpg","img/Playing field/soil.jpg","img/Playing field/soil.jpg",
-                          "img/Playing field/soil.jpg","img/Playing field/soil.jpg","img/Playing field/soil.jpg",
-                          "img/Playing field/soil.jpg","img/Playing field/soil.jpg","img/Playing field/soil.jpg",
-                          "img/Playing field/soil.jpg","img/Playing field/soil.jpg"];
+var images_for_game =    ["img/Playing field/fone.jpg","img/Plants/ded.png","img/Icons/hurvest.png"];
 
 
 //an array with plant pictures

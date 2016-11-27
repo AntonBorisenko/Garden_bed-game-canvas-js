@@ -18,8 +18,12 @@ var Model = {
       break;
 
       case "start game":
-        window.location_now = "game menu";
-        Game_menu.make();
+        if(Game_menu.array_menu_click.length != 4 || Game_menu.array_menu_drag_and_drop.length != 3) {
+          window.location_now = "game menu";
+          Game_menu.make();
+        } else {
+          window.location_now = "game";
+        }
       break;
 
       case "game menu complete":
@@ -54,6 +58,8 @@ var Model = {
     Garden_bed.images_for_hurvest = [];
     Stock.plants = [];
     Bag.seeds = [];
+    Game_menu.array_menu_drag_and_drop = [];
+    Game_menu.array_menu_click = [];
     Garden_bed.init();
     Game_events.rain.reset_all();
   },
@@ -64,9 +70,15 @@ var Model = {
   },
 
   //hanging listener
-  create_event: function () {
+  create_event: function() {
     canvas.onclick = function(event) {
       Click.onclick(event);
+    }
+    canvas.onmousedown = function(event) {
+      Drag_and_drop.onmousedown(event);
+    }
+    canvas.onmouseup = function(event) {
+      Drag_and_drop.onmouseup();
     }
   },
 
@@ -78,6 +90,27 @@ var Model = {
   //click on the game menu item
   game_menu_click: function(item) {
     Game_menu.click_on_the_item(item);
+  },
+
+  game_munu_onmousedown() {
+    bailer = false;
+    sprayer = false;
+    shovel = false;
+  },
+
+  //drag and drop on the game menu item
+  game_menu_d_a_d: function(item) {
+    switch(item) {
+      case "Bailer":
+        bailer = true;
+      break;
+      case "Sprayer":
+        sprayer = true;
+      break
+      case "Shovel":
+        shovel = true;
+      break;
+    }
   },
 
   //cansel use item(game menu icon)
@@ -134,7 +167,6 @@ var Model = {
 
   buy_plant: function(i) {
     if((User.money = User.money - Bag.seeds[i].price) >= 0 ) {
-      //User.money = User.money - Game_menu.array_plants[i].price;
       Bag.seeds[i].count++;
       window.buy_now = true;   //effects
     } else {

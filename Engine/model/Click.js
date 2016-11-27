@@ -36,14 +36,6 @@ var Click = {
       case "planting":
         Click.planting(x,y);
       break;
-
-      case "bailer":
-        Click.bailer(x,y);
-      break;
-
-      case "shovel":
-        Click.shovel(x,y);
-      break;
     }
 
   },
@@ -61,7 +53,7 @@ var Click = {
 
   //Check whether a click on the menu item
   game: function(x,y) {
-    var menu = Game_menu.array_menu;
+    var menu = Game_menu.array_menu_click;
     for(var i = 0; i < menu.length; i++) {
       if((x > menu[i].x && x < (menu[i].x + menu[i].size_x) ) && (y > menu[i].y && y < (menu[i].y + menu[i].size_y)) ) {
         Model.game_menu_click(menu[i].Obj_name);
@@ -176,39 +168,6 @@ var Click = {
           return;
         }
       }
-    }
-  },
-
-  //function for watering plant
-  bailer: function(x,y) {
-    var plants = Garden_bed.plants;
-    var bailer_icon = Game_menu.array_menu[1];
-    for(var i = 0; i < plants.length; i++) {
-      if((x > plants[i].x && x < (plants[i].x + plants[i].size)) && (y > plants[i].y && y < (plants[i].y + plants[i].size)) ) {
-        Model.watering(plants[i]);
-        Model.cansel_use_item();
-      }
-    }
-    //or cansel
-    if((x > bailer_icon.x && x < (bailer_icon.x + bailer_icon.size_x)) && (y >  bailer_icon.y && y < ( bailer_icon.y +  bailer_icon.size_y)) ) {
-      Model.cansel_use_item();
-    }
-  },
-
-  //function for digging up plants
-  shovel: function(x,y) {
-    var plants = Garden_bed.plants;
-    var shovel_icon = Game_menu.array_menu[3];
-    for(var i = 0; i < plants.length; i++) {
-      if((x > plants[i].x && x < (plants[i].x + plants[i].size)) && (y > plants[i].y && y < (plants[i].y + plants[i].size)) ) {
-        if(plants[i].status != "grown") {
-          Model.digging(plants[i].place, i);
-        }
-      }
-    }
-    //or cansel
-    if((x > shovel_icon.x && x < (shovel_icon.x + shovel_icon.size_x)) && (y >  shovel_icon.y && y < ( shovel_icon.y +  shovel_icon.size_y)) ) {
-      Model.cansel_use_item();
     }
   }
 

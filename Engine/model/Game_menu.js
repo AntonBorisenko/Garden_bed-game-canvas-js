@@ -3,19 +3,26 @@
 //Menu(top and right)
 var Game_menu = {
 
-  //This array for game menu(on garden bed)
-  array_menu: [],
+  //This array for game menu(on garden bed), where event - drag and drop
+  array_menu_drag_and_drop: [],
+  //This array for game menu(on garden bed), where event - click
+  array_menu_click: [],
 
   make: function() {
     //zero out an array
     Game_menu.array_menu = [];
 
-    function create_menu_item(img, x, y, size_x, size_y, Obj_name) {
+    function create_drag_and_drop_menu_item(img, x, y, size_x, size_y, Obj_name) {
       //Create Object_menu_item
       var menu_icon = new Create_object(x, y, size_x ,size_y, img, Obj_name);//functions.js
-      //Add in array
-      Game_menu.array_menu.push(menu_icon);
-      if(Game_menu.array_menu.length == 7) {
+      Game_menu.array_menu_drag_and_drop.push(menu_icon);//Add in array
+    }
+
+    function create_click_menu_item(img, x, y, size_x, size_y, Obj_name) {
+      //Create Object_menu_item
+      var menu_icon = new Create_object(x, y, size_x ,size_y, img, Obj_name);//functions.js
+      Game_menu.array_menu_click.push(menu_icon);//Add in array
+      if(Game_menu.array_menu_click.length == 4 && Game_menu.array_menu_drag_and_drop.length == 3) {
         if(Bag.seeds.length == 0) {
           Game_menu.create_array_plants_and_seeds();
           Game_menu.create_bag();
@@ -26,13 +33,15 @@ var Game_menu = {
         Model.responce("game menu complete");
       }
     }
-    create_menu_item(Download_app.images_game_menu[0], game_menu_icon_menu_x, game_menu_icon_menu_y, game_menu_icon_menu_size_x, game_menu_icon_menu_size_y, "Menu");//menu
-    create_menu_item(Download_app.images_game_menu[1], game_menu_icon_bailer_x, game_menu_icon_bailer_y, game_menu_icon_bailer_size_x, game_menu_icon_bailer_size_y, "Bailer");//bailer
-    create_menu_item(Download_app.images_game_menu[2], game_menu_icon_sprayer_x, game_menu_icon_sprayer_y, game_menu_icon_sprayer_size_x, game_menu_icon_sprayer_size_y, "Sprayer");//sprayer
-    create_menu_item(Download_app.images_game_menu[3], game_menu_icon_shovel_x, game_menu_icon_shovel_y, game_menu_icon_shovel_size_x, game_menu_icon_shovel_size_y, "Shovel");//shovel
-    create_menu_item(Download_app.images_game_menu[4], game_menu_icon_bag_x, game_menu_icon_bag_y, game_menu_icon_bag_size_x, game_menu_icon_bag_size_y, "Bag");//bag
-    create_menu_item(Download_app.images_game_menu[5], game_menu_icon_stock_x, game_menu_icon_stock_y, game_menu_icon_stock_size_x, game_menu_icon_stock_size_y, "Stock");//stock
-    create_menu_item(Download_app.images_game_menu[6], game_menu_icon_shop_x, game_menu_icon_shop_y, game_menu_icon_shop_size_x, game_menu_icon_shop_size_y, "Shop");//shop
+    //menu items where event - drag and drop
+    create_drag_and_drop_menu_item(Download_app.images_game_menu[1], game_menu_icon_bailer_x, game_menu_icon_bailer_y, game_menu_icon_bailer_size_x, game_menu_icon_bailer_size_y, "Bailer");//bailer
+    create_drag_and_drop_menu_item(Download_app.images_game_menu[2], game_menu_icon_sprayer_x, game_menu_icon_sprayer_y, game_menu_icon_sprayer_size_x, game_menu_icon_sprayer_size_y, "Sprayer");//sprayer
+    create_drag_and_drop_menu_item(Download_app.images_game_menu[3], game_menu_icon_shovel_x, game_menu_icon_shovel_y, game_menu_icon_shovel_size_x, game_menu_icon_shovel_size_y, "Shovel");//shovel
+    //menu items where event - click
+    create_click_menu_item(Download_app.images_game_menu[0], game_menu_icon_menu_x, game_menu_icon_menu_y, game_menu_icon_menu_size_x, game_menu_icon_menu_size_y, "Menu");//menu
+    create_click_menu_item(Download_app.images_game_menu[4], game_menu_icon_bag_x, game_menu_icon_bag_y, game_menu_icon_bag_size_x, game_menu_icon_bag_size_y, "Bag");//bag
+    create_click_menu_item(Download_app.images_game_menu[5], game_menu_icon_stock_x, game_menu_icon_stock_y, game_menu_icon_stock_size_x, game_menu_icon_stock_size_y, "Stock");//stock
+    create_click_menu_item(Download_app.images_game_menu[6], game_menu_icon_shop_x, game_menu_icon_shop_y, game_menu_icon_shop_size_x, game_menu_icon_shop_size_y, "Shop");//shop
   },
 
   create_array_plants_and_seeds: function() {
@@ -93,15 +102,6 @@ var Game_menu = {
       case "Menu":
         Model.responce("exit in menu");
         break;
-      case "Bailer":
-        Bailer.click_on_the_icon();
-        break;
-      case "Sprayer":
-        Sprayer.click_on_the_icon();
-        break;
-      case "Shovel":
-        Shovel.click_on_the_icon();
-        break;
       case "Bag":
         Bag.click_on_the_icon();
         break;
@@ -118,29 +118,6 @@ var Game_menu = {
 
 
 //OBJECTS MENU ICONS
-
-//bailer
-var Bailer = {
-  click_on_the_icon: function() {
-    window.location_now = "bailer";
-    document.body.style.cursor = "url('img/Icons/bailer.png'), auto";
-  }
-}
-
-//sprayer
-var Sprayer = {
-  click_on_the_icon: function() {
-    alert('Sprayer clik!');
-  }
-}
-
-//shovel
-var Shovel = {
-  click_on_the_icon: function() {
-    window.location_now = "shovel";
-    document.body.style.cursor = "url('img/Icons/shovel.png'), auto";
-  }
-}
 
 //bag
 var Bag = {

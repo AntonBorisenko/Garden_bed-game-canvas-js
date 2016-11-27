@@ -3,7 +3,7 @@ var View = {
 
   drawGame: "",
 
-  interval: 100,
+  interval: 50,
 
   //setInterval start
   start_game: function() {
@@ -124,7 +124,7 @@ var View = {
     //paint garden
     ctx.drawImage(Download_app.images_for_game[0], garden_padding_left, garden_padding_top, garden_width, garden_height);
     //paint game menu
-    View.paintGameMenu();
+    View.paint_game_menu_click();
     //if there are plants
     if(Garden_bed.plants.length > 0)  View.paint_plants();
     //paint user money
@@ -146,19 +146,57 @@ var View = {
     ctx.font = experience_user_text;
     ctx.fillText("Опыт: " + User.experience, experience_user_x, experience_user_y);
 
+    //PAINT GAME MENU ITEM WRETE EVENT - DRAG AND DROP
+    View.paint_game_menu_drag_and_drop();
+    //BAG AND PLACE FOR PLANTING
     if(bag) View.paintBag(); //if window.bag == true
     if(planting) View.paint_places_for_plant(); //if window.planting == true
+    //RAIN
     if(Game_events.rain.status) {
       View.paint_rain(); //if window.rain == true
     }
   },
 
-  //paint game menu
-  paintGameMenu: function() {
-    var game_menu = Game_menu.array_menu;
-    for(var i = 0; i < 7;/*then change to the length of the array*/i++) {
-      ctx.drawImage(game_menu[i].img, game_menu[i].x, game_menu[i].y, game_menu[i].size_x, game_menu[i].size_y);
+  //menu items where event - click
+  paint_game_menu_click: function() {
+    var game_menu_click = Game_menu.array_menu_click;
+    for(var i = 0; i < game_menu_click.length; i++) {
+      ctx.drawImage(game_menu_click[i].img, game_menu_click[i].x, game_menu_click[i].y, game_menu_click[i].size_x, game_menu_click[i].size_y);
     }
+  },
+
+  paint_game_menu_drag_and_drop: function() {
+    //We get the coordinates of the canvas on the page
+    var el = document.getElementById('canvas');
+    var x_canvas = findPosX(el);//functions.js
+    var y_canvas = findPosY(el);//functions.js
+    //We get the coordinates mouse in the canvas
+    canvas.onmousemove = function(event) {
+      move_x = event.pageX - x_canvas;
+      move_y = event.pageY - y_canvas;
+    }
+    //Draw
+    var menu = Game_menu.array_menu_drag_and_drop;
+
+        if(bailer)
+          ctx.drawImage(menu[0].img, move_x, move_y, menu[0].size_x, menu[0].size_y);
+        else {
+          ctx.drawImage(menu[0].img, menu[0].x, menu[0].y, menu[0].size_x, menu[0].size_y);
+        }
+
+        if(sprayer)
+          ctx.drawImage(menu[1].img, move_x, move_y, menu[1].size_x, menu[1].size_y);
+        else {
+          ctx.drawImage(menu[1].img, menu[1].x, menu[1].y, menu[1].size_x, menu[1].size_y);
+        }
+
+        if(shovel)
+          ctx.drawImage(menu[2].img, move_x, move_y, menu[2].size_x, menu[2].size_y);
+        else {
+          ctx.drawImage(menu[2].img, menu[2].x, menu[2].y, menu[2].size_x, menu[2].size_y);
+        }
+
+
   },
 
   paint_plants: function() {

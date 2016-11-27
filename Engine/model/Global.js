@@ -26,6 +26,9 @@ var Global = {
   define_status_variables: function() {
     window.location_now;                  //location
     window.bag = false;                   //the state of the bag
+    window.bailer = false;                //drag and drop
+    window.sprayer = false;               //drag and drop
+    window.shovel = false;                //drag and drop
     window.stock = false;                 //the state of the stock
     window.shop = false;
     window.planting = false;              //the state of the planting
@@ -126,6 +129,7 @@ var Global = {
     game_menu_icon_bailer_y + size_smal_icons_x + distance_icons;
     window.game_menu_icon_stock_y = game_menu_icon_shovel_y + size_smal_icons_x + distance_icons;
     window.game_menu_icon_shop_y = window.game_menu_icon_stock_y + size_smal_icons_x + distance_icons;
+
   },
 
   define_plants_values: function(canvas) {
