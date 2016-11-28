@@ -3,6 +3,7 @@
 var Drag_and_drop = {
 
   onmousedown: function(event) {
+
     //We get the coordinates of the canvas on the page
     var el = document.getElementById('canvas');
     var x_canvas = findPosX(el);
@@ -19,14 +20,33 @@ var Drag_and_drop = {
 
   },
 
-  onmouseup: function() {
+  touchstart: function(event) {
+  	if (event.targetTouches.length == 1) {
+  		//We get the coordinates of the canvas on the page
+  		var el = document.getElementById('canvas');
+  		var x_canvas = findPosX(el);
+  		var y_canvas = findPosY(el);
+
+  		var touch=event.targetTouches[0];
+  		var x = touch.pageX - x_canvas - touch.target.offsetLeft;
+  		var y = touch.pageY - y_canvas - touch.target.offsetTop;
+
+  		switch(location_now) {
+  		  case('game'):
+  			   Drag_and_drop.game(x, y);
+  		     break;
+      }
+  	}
+  },
+
+  onmouseup: function(event) {
     //We get the coordinates of the canvas on the page
     var el = document.getElementById('canvas');
     var x_canvas = findPosX(el);
     var y_canvas = findPosY(el);
     //We get the coordinates of the click in the canvas
     var x = event.pageX - x_canvas;
-    var y = event.pageY - x_canvas;
+    var y = event.pageY - y_canvas;
 
     if(bailer) {
       Drag_and_drop.bailer(x, y);
@@ -35,7 +55,28 @@ var Drag_and_drop = {
     } else if(shovel) {
       Drag_and_drop.shovel(x, y);
     }
-    Model.game_munu_onmousedown();
+    Model.game_munu_onmouseup();
+  },
+
+  touchend: function(event) {
+	  if (event.changedTouches.length == 1) {
+  		 //We get the coordinates of the canvas on the page
+  		var el = document.getElementById('canvas');
+  		var x_canvas = findPosX(el);
+  		var y_canvas = findPosY(el);
+
+  		var x = event.changedTouches[0].pageX - x_canvas;
+  		var y = event.changedTouches[0].pageY - y_canvas;
+
+  		if(bailer) {
+  		  Drag_and_drop.bailer(x, y);
+  		} else if(sprayer) {
+  		  Drag_and_drop.sprayer(x, y);
+  		} else if(shovel) {
+  		  Drag_and_drop.shovel(x, y);
+  		}
+  		Model.game_munu_onmouseup();
+		}
   },
 
   game: function(x, y) {

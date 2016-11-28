@@ -1,6 +1,8 @@
 body {
-  background-color:gray;
+  background-color:white;
   cursor: url('../img/Icons/cursor.png'), auto;
+  margin: 0;
+  padding: 0;
 }
 
 canvas {

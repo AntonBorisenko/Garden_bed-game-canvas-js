@@ -78,8 +78,14 @@ var Model = {
       Drag_and_drop.onmousedown(event);
     }
     canvas.onmouseup = function(event) {
-      Drag_and_drop.onmouseup();
+      Drag_and_drop.onmouseup(event);
     }
+  	canvas.addEventListener('touchstart', function(event) {
+  	  Drag_and_drop.touchstart(event);
+  	}, false);
+  	canvas.addEventListener('touchend', function(event) {
+  		Drag_and_drop.touchend(event);
+  	}, false);
   },
 
   //Check whether a click on the main menu
@@ -92,7 +98,7 @@ var Model = {
     Game_menu.click_on_the_item(item);
   },
 
-  game_munu_onmousedown() {
+  game_munu_onmouseup: function() {
     bailer = false;
     sprayer = false;
     shovel = false;

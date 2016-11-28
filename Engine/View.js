@@ -170,11 +170,19 @@ var View = {
     var el = document.getElementById('canvas');
     var x_canvas = findPosX(el);//functions.js
     var y_canvas = findPosY(el);//functions.js
-    //We get the coordinates mouse in the canvas
+    //We get the coordinates mouse in the canvas(click)
     canvas.onmousemove = function(event) {
       move_x = event.pageX - x_canvas;
       move_y = event.pageY - y_canvas;
     }
+    //We get the coordinates mouse in the canvas(touch)
+    canvas.addEventListener('touchmove', function(event) {
+      if (event.targetTouches.length == 1) {
+        var touch = event.targetTouches[0];
+        move_x = touch.pageX - x_canvas;;
+        move_y = touch.pageY - y_canvas;
+      }
+    }, false);
     //Draw
     var menu = Game_menu.array_menu_drag_and_drop;
 
