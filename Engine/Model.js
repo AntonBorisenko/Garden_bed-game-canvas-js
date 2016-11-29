@@ -117,6 +117,12 @@ var Model = {
         shovel = true;
       break;
     }
+    canvas.onmousemove = function(event) {
+      Drag_and_drop.onmousemove(event);
+    }
+    canvas.addEventListener('touchmove', function(event) {
+      Drag_and_drop.touchmove(event);
+    }, false);
   },
 
   //cansel use item(game menu icon)

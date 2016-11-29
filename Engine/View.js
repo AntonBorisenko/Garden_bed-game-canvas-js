@@ -1,3 +1,5 @@
+"use strict";
+
 //View
 var View = {
 
@@ -166,44 +168,26 @@ var View = {
   },
 
   paint_game_menu_drag_and_drop: function() {
-    //We get the coordinates of the canvas on the page
-    var el = document.getElementById('canvas');
-    var x_canvas = findPosX(el);//functions.js
-    var y_canvas = findPosY(el);//functions.js
-    //We get the coordinates mouse in the canvas(click)
-    canvas.onmousemove = function(event) {
-      move_x = event.pageX - x_canvas;
-      move_y = event.pageY - y_canvas;
-    }
-    //We get the coordinates mouse in the canvas(touch)
-    canvas.addEventListener('touchmove', function(event) {
-      if (event.targetTouches.length == 1) {
-        var touch = event.targetTouches[0];
-        move_x = touch.pageX - x_canvas;;
-        move_y = touch.pageY - y_canvas;
-      }
-    }, false);
     //Draw
     var menu = Game_menu.array_menu_drag_and_drop;
 
-        if(bailer)
-          ctx.drawImage(menu[0].img, move_x, move_y, menu[0].size_x, menu[0].size_y);
-        else {
-          ctx.drawImage(menu[0].img, menu[0].x, menu[0].y, menu[0].size_x, menu[0].size_y);
-        }
+    if(bailer && last_move_x !== false && last_move_y !== false) {
+      ctx.drawImage(menu[0].img, last_move_x, last_move_y, menu[0].size_x, menu[0].size_y);
+    } else {
+      ctx.drawImage(menu[0].img, menu[0].x, menu[0].y, menu[0].size_x, menu[0].size_y);
+    }
 
-        if(sprayer)
-          ctx.drawImage(menu[1].img, move_x, move_y, menu[1].size_x, menu[1].size_y);
-        else {
-          ctx.drawImage(menu[1].img, menu[1].x, menu[1].y, menu[1].size_x, menu[1].size_y);
-        }
+    if(sprayer && last_move_x !== false && last_move_y !== false) {
+      ctx.drawImage(menu[1].img, last_move_x, last_move_y, menu[1].size_x, menu[1].size_y);
+    } else {
+      ctx.drawImage(menu[1].img, menu[1].x, menu[1].y, menu[1].size_x, menu[1].size_y);
+    }
 
-        if(shovel)
-          ctx.drawImage(menu[2].img, move_x, move_y, menu[2].size_x, menu[2].size_y);
-        else {
-          ctx.drawImage(menu[2].img, menu[2].x, menu[2].y, menu[2].size_x, menu[2].size_y);
-        }
-
+    if(shovel && last_move_x !== false && last_move_y !== false) {
+      ctx.drawImage(menu[2].img, last_move_x, last_move_y, menu[2].size_x, menu[2].size_y);
+    } else {
+      ctx.drawImage(menu[2].img, menu[2].x, menu[2].y, menu[2].size_x, menu[2].size_y);
+    }
 
   },
 

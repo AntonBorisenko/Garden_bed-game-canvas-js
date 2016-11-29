@@ -94,11 +94,14 @@ var Global = {
     window.first_for_y = canvas.width/13;
     window.second_for_y = first_for_y + plants_distance + plant_size;
     window.third_for_y = second_for_y + plants_distance + plant_size;
+    //for drag and drop
+    window.last_move_x = false;
+    window.last_move_y = false;
   },
 
   define_game_menu_icons: function(canvas) {
     //PROPORTIONS GAME MENU ICONS
-    var size_small_icons = canvas.height/9;
+    var size_small_icons = window.game_menu_small_icons_size = canvas.height/9;
     var distance_icons = canvas.width/60;
     //size x bailer, sprayer, shovel, bag
     var size_smal_icons_x = window.game_menu_icon_bailer_size_x = window.game_menu_icon_sprayer_size_x =

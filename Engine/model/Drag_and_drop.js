@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var Drag_and_drop = {
 
@@ -39,14 +39,49 @@ var Drag_and_drop = {
   	}
   },
 
+  onmousemove: function(event) {
+    //We get the coordinates of the canvas on the page
+    var el = document.getElementById('canvas');
+    var x_canvas = findPosX(el);//functions.js
+    var y_canvas = findPosY(el);//functions.js
+    //We get the coordinates mouse in the canvas(click)
+    var move_x = event.pageX - x_canvas - (game_menu_small_icons_size / 2);
+    var move_y = event.pageY - y_canvas - (game_menu_small_icons_size / 2);
+    last_move_x = move_x;
+    last_move_y = move_y;
+    //watering
+    if(bailer) {
+      Drag_and_drop.bailer(last_move_x, last_move_y);
+    }
+  },
+
+  touchmove: function(event) {
+    //We get the coordinates of the canvas on the page
+    var el = document.getElementById('canvas');
+    var x_canvas = findPosX(el);//functions.js
+    var y_canvas = findPosY(el);//functions.js
+    //We get the coordinates mouse in the canvas(touch)
+    if (event.targetTouches.length == 1) {
+      var touch = event.targetTouches[0];
+      var move_x = touch.pageX - x_canvas - (game_menu_small_icons_size / 2);
+      var move_y = touch.pageY - y_canvas - (game_menu_small_icons_size / 2);
+      last_move_x = move_x;
+      last_move_y = move_y;
+      //watering
+      if(bailer) {
+        Drag_and_drop.bailer(last_move_x, last_move_y);
+      }
+    }
+  },
+
   onmouseup: function(event) {
     //We get the coordinates of the canvas on the page
     var el = document.getElementById('canvas');
     var x_canvas = findPosX(el);
     var y_canvas = findPosY(el);
     //We get the coordinates of the click in the canvas
-    var x = event.pageX - x_canvas;
-    var y = event.pageY - y_canvas;
+    var x = event.pageX - x_canvas - (game_menu_small_icons_size / 2);
+    var y = event.pageY - y_canvas + (game_menu_small_icons_size / 2);
 
     if(bailer) {
       Drag_and_drop.bailer(x, y);
@@ -65,8 +100,8 @@ var Drag_and_drop = {
   		var x_canvas = findPosX(el);
   		var y_canvas = findPosY(el);
 
-  		var x = event.changedTouches[0].pageX - x_canvas;
-  		var y = event.changedTouches[0].pageY - y_canvas;
+  		var x = event.changedTouches[0].pageX - x_canvas - (game_menu_small_icons_size / 2);
+  		var y = event.changedTouches[0].pageY - y_canvas + (game_menu_small_icons_size / 2);
 
   		if(bailer) {
   		  Drag_and_drop.bailer(x, y);
